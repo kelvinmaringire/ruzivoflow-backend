@@ -47,14 +47,22 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "rest_framework",
+    'corsheaders',
 
     "home",
-    "search",
 
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://thedatamine.io",
+    "http://thedatamine.io",
+    "http://localhost:9000",
+    "http://127.0.0.1:9000",
 ]
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware", # New MIDDLEWARE
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -182,3 +190,5 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
