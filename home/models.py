@@ -9,19 +9,19 @@ from .streams import ServicesBlock
 
 
 class HomePage(Page):
-    hero_title = models.CharField(max_length=100, blank=False, null=True)
-    hero_subtitle = RichTextField(null=True, blank=False)
-    hero_image = models.ForeignKey(
+    heroTitle = models.CharField(max_length=100, blank=False, null=True)
+    heroSubtitle = RichTextField(null=True, blank=False)
+    heroImage = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=False,
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    hero_outline_button_title = models.CharField(max_length=100, blank=False, null=True)
-    hero_outline_button_url = models.CharField(null=True, blank=False)
-    hero_flat_button_title = models.CharField(max_length=100, blank=False, null=True)
-    hero_flat_button_url = models.CharField(null=True, blank=False)
+    heroOutlineButtonTitle = models.CharField(max_length=100, blank=False, null=True)
+    heroOutlineButtonHref = models.CharField(null=True, blank=False)
+    heroFlatButtonTitle = models.CharField(max_length=100, blank=False, null=True)
+    heroFlatButtonHref = models.CharField(null=True, blank=False)
 
     services_title = models.CharField(max_length=100, blank=False, null=True)
     services = StreamField([
@@ -42,13 +42,13 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            FieldPanel("hero_title"),
-            FieldPanel("hero_subtitle"),
-            FieldPanel("hero_image"),
-            FieldPanel("hero_outline_button_title"),
-            PageChooserPanel("hero_outline_button_url"),
-            FieldPanel("hero_flat_button_title"),
-            FieldPanel("hero_flat_button_url"),
+            FieldPanel("heroTitle"),
+            FieldPanel("heroSubtitle"),
+            FieldPanel("heroImage"),
+            FieldPanel("heroOutlineButtonTitle"),
+            FieldPanel("heroOutlineButtonHref"),
+            FieldPanel("heroFlatButtonTitle"),
+            FieldPanel("heroFlatButtonHref"),
         ], heading="Hero Options", classname="collapsed", icon="desktop"),
         MultiFieldPanel([
             FieldPanel("services_title"),
@@ -63,13 +63,13 @@ class HomePage(Page):
     ]
 
     api_fields = [
-        APIField('hero_title'),
-        APIField('hero_subtitle'),
-        APIField('hero_image'),
-        APIField('hero_outline_button_title'),
-        APIField('hero_outline_button_url'),
-        APIField('hero_flat_button_title'),
-        APIField('hero_flat_button_url'),
+        APIField('heroTitle'),
+        APIField('heroSubtitle'),
+        APIField('heroImage'),
+        APIField('heroOutlineButtonTitle'),
+        APIField('heroOutlineButtonHref'),
+        APIField('heroFlatButtonTitle'),
+        APIField('heroFlatButtonHref'),
         APIField('services_title'),
         APIField('services'),
         APIField('landing_page_title'),

@@ -47,11 +47,19 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "rest_framework",
+    'rest_framework_simplejwt',
     'corsheaders',
 
     "home",
+    "accounts",
+    "thedatabet",
+    "thedataeditor"
 
 ]
+
+############### New Settings ################
+
+
 
 CORS_ALLOWED_ORIGINS = [
     "https://thedatamine.io",
@@ -59,6 +67,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",
     "http://127.0.0.1:9000",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+############### End New Settings ################
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",

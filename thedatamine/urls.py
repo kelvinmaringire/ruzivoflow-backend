@@ -6,13 +6,20 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 from .api import api_router
 
 urlpatterns = [
     path('api/v2/', api_router.urls),
     path("django-admin/", admin.site.urls),
-    path("", include(wagtailadmin_urls)),
+    path("admin", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 
