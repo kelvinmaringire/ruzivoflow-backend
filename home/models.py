@@ -3,9 +3,10 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.api import APIField
-from wagtail.admin.panels import FieldPanel, PageChooserPanel, MultiFieldPanel, InlinePanel, FieldRowPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 
 from .streams import ServicesBlock
+from .serializers import ImageSerializedField
 
 
 class HomePage(Page):
@@ -65,7 +66,7 @@ class HomePage(Page):
     api_fields = [
         APIField('heroTitle'),
         APIField('heroSubtitle'),
-        APIField('heroImage'),
+        APIField('heroImage', serializer=ImageSerializedField()),
         APIField('heroOutlineButtonTitle'),
         APIField('heroOutlineButtonHref'),
         APIField('heroFlatButtonTitle'),
@@ -75,6 +76,6 @@ class HomePage(Page):
         APIField('landing_page_title'),
         APIField('landing_page_box_title'),
         APIField('landing_page_box_subtitle'),
-        APIField('landing_page_image'),
+        APIField('landing_page_image', serializer=ImageSerializedField()),
 
     ]
