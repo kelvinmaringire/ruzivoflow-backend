@@ -59,14 +59,34 @@ INSTALLED_APPS = [
 
 ############### New Settings ################
 
-
-
 CORS_ALLOWED_ORIGINS = [
     "https://thedatamine.io",
+    "https://thedatamine.io/",
     "http://thedatamine.io",
     "http://localhost:9000",
     "http://127.0.0.1:9000",
 ]
+
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
+
+CORS_ALLOW_HEADERS = (
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+)
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
