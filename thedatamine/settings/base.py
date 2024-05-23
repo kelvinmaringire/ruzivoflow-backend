@@ -61,13 +61,10 @@ INSTALLED_APPS = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://thedatamine.io",
-    "https://thedatamine.io/",
     "http://thedatamine.io",
     "http://localhost:9000",
     "http://127.0.0.1:9000",
 ]
-
-
 
 
 REST_FRAMEWORK = {
