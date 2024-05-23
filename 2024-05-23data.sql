@@ -5,7 +5,7 @@
 -- Dumped from database version 15.2
 -- Dumped by pg_dump version 15.2
 
--- Started on 2024-05-23 21:49:19
+-- Started on 2024-05-23 21:57:56
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,7 @@ SET row_security = off;
 --
 -- TOC entry 3935 (class 0 OID 81665)
 -- Dependencies: 221
--- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.auth_group (id, name) FROM stdin;
@@ -33,7 +33,7 @@ COPY public.auth_group (id, name) FROM stdin;
 --
 -- TOC entry 3931 (class 0 OID 81651)
 -- Dependencies: 217
--- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.django_content_type (id, app_label, model) FROM stdin;
@@ -87,7 +87,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 --
 -- TOC entry 3933 (class 0 OID 81659)
 -- Dependencies: 219
--- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
@@ -276,7 +276,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 -- TOC entry 3937 (class 0 OID 81673)
 -- Dependencies: 223
--- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
@@ -304,7 +304,7 @@ COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
 --
 -- TOC entry 3939 (class 0 OID 81679)
 -- Dependencies: 225
--- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
@@ -315,7 +315,7 @@ COPY public.auth_user (id, password, last_login, is_superuser, username, first_n
 --
 -- TOC entry 3941 (class 0 OID 81687)
 -- Dependencies: 227
--- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
@@ -325,7 +325,7 @@ COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
 --
 -- TOC entry 3943 (class 0 OID 81693)
 -- Dependencies: 229
--- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
@@ -335,7 +335,7 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 --
 -- TOC entry 3945 (class 0 OID 81751)
 -- Dependencies: 231
--- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
@@ -345,7 +345,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 --
 -- TOC entry 3929 (class 0 OID 81643)
 -- Dependencies: 215
--- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.django_migrations (id, app, name, applied) FROM stdin;
@@ -568,7 +568,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 --
 -- TOC entry 3967 (class 0 OID 81993)
 -- Dependencies: 253
--- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
@@ -586,7 +586,7 @@ n951022rdxr8budmt3dvncvow8121eh3	.eJxVjMsOwiAQRf-FtSEM5VG6dO83kClMBDVgoE00xn_XJl
 --
 -- TOC entry 3957 (class 0 OID 81881)
 -- Dependencies: 243
--- Data for Name: wagtailcore_collection; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_collection; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
@@ -599,7 +599,7 @@ COPY public.wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
 --
 -- TOC entry 3991 (class 0 OID 82227)
 -- Dependencies: 277
--- Data for Name: wagtailcore_locale; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_locale; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_locale (id, language_code) FROM stdin;
@@ -610,7 +610,7 @@ COPY public.wagtailcore_locale (id, language_code) FROM stdin;
 --
 -- TOC entry 3951 (class 0 OID 81802)
 -- Dependencies: 237
--- Data for Name: wagtailcore_revision; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_revision; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_revision (id, created_at, content, approved_go_live_at, object_id, user_id, content_type_id, base_content_type_id, object_str) FROM stdin;
@@ -624,7 +624,7 @@ COPY public.wagtailcore_revision (id, created_at, content, approved_go_live_at, 
 --
 -- TOC entry 3947 (class 0 OID 81780)
 -- Dependencies: 233
--- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title, locked_at, locked_by_id, translation_key, locale_id, alias_of_id, latest_revision_id) FROM stdin;
@@ -636,7 +636,7 @@ COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_
 --
 -- TOC entry 4012 (class 0 OID 82609)
 -- Dependencies: 298
--- Data for Name: wagtailimages_image; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailimages_image; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailimages_image (id, title, file, width, height, created_at, focal_point_x, focal_point_y, focal_point_width, focal_point_height, uploaded_by_user_id, file_size, collection_id, file_hash) FROM stdin;
@@ -648,7 +648,7 @@ COPY public.wagtailimages_image (id, title, file, width, height, created_at, foc
 --
 -- TOC entry 3966 (class 0 OID 81983)
 -- Dependencies: 252
--- Data for Name: home_homepage; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: home_homepage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.home_homepage (page_ptr_id, "heroFlatButtonTitle", "heroFlatButtonHref", "heroImage_id", "heroOutlineButtonTitle", "heroOutlineButtonHref", "heroSubtitle", "heroTitle", landing_page_box_subtitle, landing_page_box_title, landing_page_image_id, landing_page_title, services, services_title) FROM stdin;
@@ -659,7 +659,7 @@ COPY public.home_homepage (page_ptr_id, "heroFlatButtonTitle", "heroFlatButtonHr
 --
 -- TOC entry 3969 (class 0 OID 82003)
 -- Dependencies: 255
--- Data for Name: taggit_tag; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: taggit_tag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.taggit_tag (id, name, slug) FROM stdin;
@@ -669,7 +669,7 @@ COPY public.taggit_tag (id, name, slug) FROM stdin;
 --
 -- TOC entry 3971 (class 0 OID 82013)
 -- Dependencies: 257
--- Data for Name: taggit_taggeditem; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: taggit_taggeditem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
@@ -679,7 +679,7 @@ COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdi
 --
 -- TOC entry 4024 (class 0 OID 87591)
 -- Dependencies: 310
--- Data for Name: thedatabet_bettingtips; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: thedatabet_bettingtips; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.thedatabet_bettingtips (id, date, games, host_sc_mse, host_sc_r2, guest_sc_mse, guest_sc_r2, result_mse, result_r2) FROM stdin;
@@ -693,7 +693,7 @@ COPY public.thedatabet_bettingtips (id, date, games, host_sc_mse, host_sc_r2, gu
 --
 -- TOC entry 3973 (class 0 OID 82037)
 -- Dependencies: 259
--- Data for Name: wagtailadmin_admin; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailadmin_admin; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailadmin_admin (id) FROM stdin;
@@ -703,7 +703,7 @@ COPY public.wagtailadmin_admin (id) FROM stdin;
 --
 -- TOC entry 3963 (class 0 OID 81951)
 -- Dependencies: 249
--- Data for Name: wagtailcore_collectionviewrestriction; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_collectionviewrestriction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_collectionviewrestriction (id, restriction_type, password, collection_id) FROM stdin;
@@ -713,7 +713,7 @@ COPY public.wagtailcore_collectionviewrestriction (id, restriction_type, passwor
 --
 -- TOC entry 3965 (class 0 OID 81957)
 -- Dependencies: 251
--- Data for Name: wagtailcore_collectionviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_collectionviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_collectionviewrestriction_groups (id, collectionviewrestriction_id, group_id) FROM stdin;
@@ -723,7 +723,7 @@ COPY public.wagtailcore_collectionviewrestriction_groups (id, collectionviewrest
 --
 -- TOC entry 3993 (class 0 OID 82257)
 -- Dependencies: 279
--- Data for Name: wagtailcore_comment; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_comment; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_comment (id, text, contentpath, "position", created_at, updated_at, resolved_at, page_id, resolved_by_id, revision_created_id, user_id) FROM stdin;
@@ -733,7 +733,7 @@ COPY public.wagtailcore_comment (id, text, contentpath, "position", created_at, 
 --
 -- TOC entry 3995 (class 0 OID 82265)
 -- Dependencies: 281
--- Data for Name: wagtailcore_commentreply; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_commentreply; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_commentreply (id, text, created_at, updated_at, comment_id, user_id) FROM stdin;
@@ -743,7 +743,7 @@ COPY public.wagtailcore_commentreply (id, text, created_at, updated_at, comment_
 --
 -- TOC entry 3975 (class 0 OID 82051)
 -- Dependencies: 261
--- Data for Name: wagtailcore_task; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_task; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_task (id, name, active, content_type_id) FROM stdin;
@@ -754,7 +754,7 @@ COPY public.wagtailcore_task (id, name, active, content_type_id) FROM stdin;
 --
 -- TOC entry 3980 (class 0 OID 82068)
 -- Dependencies: 266
--- Data for Name: wagtailcore_groupapprovaltask; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_groupapprovaltask; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_groupapprovaltask (task_ptr_id) FROM stdin;
@@ -765,7 +765,7 @@ COPY public.wagtailcore_groupapprovaltask (task_ptr_id) FROM stdin;
 --
 -- TOC entry 3987 (class 0 OID 82099)
 -- Dependencies: 273
--- Data for Name: wagtailcore_groupapprovaltask_groups; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_groupapprovaltask_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_groupapprovaltask_groups (id, groupapprovaltask_id, group_id) FROM stdin;
@@ -776,7 +776,7 @@ COPY public.wagtailcore_groupapprovaltask_groups (id, groupapprovaltask_id, grou
 --
 -- TOC entry 3959 (class 0 OID 81894)
 -- Dependencies: 245
--- Data for Name: wagtailcore_groupcollectionpermission; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_groupcollectionpermission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_groupcollectionpermission (id, collection_id, group_id, permission_id) FROM stdin;
@@ -798,7 +798,7 @@ COPY public.wagtailcore_groupcollectionpermission (id, collection_id, group_id, 
 --
 -- TOC entry 3949 (class 0 OID 81794)
 -- Dependencies: 235
--- Data for Name: wagtailcore_grouppagepermission; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_grouppagepermission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_grouppagepermission (id, group_id, page_id, permission_id) FROM stdin;
@@ -815,7 +815,7 @@ COPY public.wagtailcore_grouppagepermission (id, group_id, page_id, permission_i
 --
 -- TOC entry 3999 (class 0 OID 82329)
 -- Dependencies: 285
--- Data for Name: wagtailcore_modellogentry; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_modellogentry; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_modellogentry (id, label, action, data, "timestamp", content_changed, deleted, object_id, content_type_id, user_id, uuid, revision_id) FROM stdin;
@@ -833,7 +833,7 @@ COPY public.wagtailcore_modellogentry (id, label, action, data, "timestamp", con
 --
 -- TOC entry 3989 (class 0 OID 82207)
 -- Dependencies: 275
--- Data for Name: wagtailcore_pagelogentry; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_pagelogentry; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_pagelogentry (id, label, action, data, "timestamp", content_changed, deleted, content_type_id, page_id, revision_id, user_id, uuid) FROM stdin;
@@ -851,7 +851,7 @@ COPY public.wagtailcore_pagelogentry (id, label, action, data, "timestamp", cont
 --
 -- TOC entry 3997 (class 0 OID 82273)
 -- Dependencies: 283
--- Data for Name: wagtailcore_pagesubscription; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_pagesubscription; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_pagesubscription (id, comment_notifications, page_id, user_id) FROM stdin;
@@ -862,7 +862,7 @@ COPY public.wagtailcore_pagesubscription (id, comment_notifications, page_id, us
 --
 -- TOC entry 3953 (class 0 OID 81810)
 -- Dependencies: 239
--- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_pageviewrestriction (id, password, page_id, restriction_type) FROM stdin;
@@ -872,7 +872,7 @@ COPY public.wagtailcore_pageviewrestriction (id, password, page_id, restriction_
 --
 -- TOC entry 3961 (class 0 OID 81924)
 -- Dependencies: 247
--- Data for Name: wagtailcore_pageviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_pageviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, group_id) FROM stdin;
@@ -882,7 +882,7 @@ COPY public.wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, 
 --
 -- TOC entry 4001 (class 0 OID 82442)
 -- Dependencies: 287
--- Data for Name: wagtailcore_referenceindex; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_referenceindex; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_referenceindex (id, object_id, to_object_id, model_path, content_path, content_path_hash, base_content_type_id, content_type_id, to_content_type_id) FROM stdin;
@@ -897,7 +897,7 @@ COPY public.wagtailcore_referenceindex (id, object_id, to_object_id, model_path,
 --
 -- TOC entry 3955 (class 0 OID 81816)
 -- Dependencies: 241
--- Data for Name: wagtailcore_site; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_site; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_name) FROM stdin;
@@ -908,7 +908,7 @@ COPY public.wagtailcore_site (id, hostname, port, is_default_site, root_page_id,
 --
 -- TOC entry 3977 (class 0 OID 82057)
 -- Dependencies: 263
--- Data for Name: wagtailcore_taskstate; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_taskstate; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_taskstate (id, status, started_at, finished_at, content_type_id, revision_id, task_id, workflow_state_id, finished_by_id, comment) FROM stdin;
@@ -918,7 +918,7 @@ COPY public.wagtailcore_taskstate (id, status, started_at, finished_at, content_
 --
 -- TOC entry 3979 (class 0 OID 82063)
 -- Dependencies: 265
--- Data for Name: wagtailcore_workflow; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_workflow; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_workflow (id, name, active) FROM stdin;
@@ -929,7 +929,7 @@ COPY public.wagtailcore_workflow (id, name, active) FROM stdin;
 --
 -- TOC entry 4002 (class 0 OID 82506)
 -- Dependencies: 288
--- Data for Name: wagtailcore_workflowcontenttype; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_workflowcontenttype; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_workflowcontenttype (content_type_id, workflow_id) FROM stdin;
@@ -939,7 +939,7 @@ COPY public.wagtailcore_workflowcontenttype (content_type_id, workflow_id) FROM 
 --
 -- TOC entry 3983 (class 0 OID 82081)
 -- Dependencies: 269
--- Data for Name: wagtailcore_workflowpage; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_workflowpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_workflowpage (page_id, workflow_id) FROM stdin;
@@ -950,7 +950,7 @@ COPY public.wagtailcore_workflowpage (page_id, workflow_id) FROM stdin;
 --
 -- TOC entry 3982 (class 0 OID 82074)
 -- Dependencies: 268
--- Data for Name: wagtailcore_workflowstate; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_workflowstate; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_workflowstate (id, status, created_at, current_task_state_id, object_id, requested_by_id, workflow_id, content_type_id, base_content_type_id) FROM stdin;
@@ -960,7 +960,7 @@ COPY public.wagtailcore_workflowstate (id, status, created_at, current_task_stat
 --
 -- TOC entry 3985 (class 0 OID 82092)
 -- Dependencies: 271
--- Data for Name: wagtailcore_workflowtask; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailcore_workflowtask; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailcore_workflowtask (id, sort_order, task_id, workflow_id) FROM stdin;
@@ -971,7 +971,7 @@ COPY public.wagtailcore_workflowtask (id, sort_order, task_id, workflow_id) FROM
 --
 -- TOC entry 4004 (class 0 OID 82539)
 -- Dependencies: 290
--- Data for Name: wagtaildocs_document; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtaildocs_document; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, collection_id, file_size, file_hash) FROM stdin;
@@ -982,7 +982,7 @@ COPY public.wagtaildocs_document (id, title, file, created_at, uploaded_by_user_
 --
 -- TOC entry 4006 (class 0 OID 82560)
 -- Dependencies: 292
--- Data for Name: wagtaildocs_uploadeddocument; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtaildocs_uploadeddocument; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtaildocs_uploadeddocument (id, file, uploaded_by_user_id) FROM stdin;
@@ -992,7 +992,7 @@ COPY public.wagtaildocs_uploadeddocument (id, file, uploaded_by_user_id) FROM st
 --
 -- TOC entry 4008 (class 0 OID 82572)
 -- Dependencies: 294
--- Data for Name: wagtailembeds_embed; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailembeds_embed; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailembeds_embed (id, url, max_width, type, html, title, author_name, provider_name, thumbnail_url, width, height, last_updated, hash, cache_until) FROM stdin;
@@ -1002,7 +1002,7 @@ COPY public.wagtailembeds_embed (id, url, max_width, type, html, title, author_n
 --
 -- TOC entry 4010 (class 0 OID 82588)
 -- Dependencies: 296
--- Data for Name: wagtailforms_formsubmission; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailforms_formsubmission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdin;
@@ -1012,7 +1012,7 @@ COPY public.wagtailforms_formsubmission (id, form_data, submit_time, page_id) FR
 --
 -- TOC entry 4014 (class 0 OID 82620)
 -- Dependencies: 300
--- Data for Name: wagtailimages_rendition; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailimages_rendition; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailimages_rendition (id, file, width, height, focal_point_key, filter_spec, image_id) FROM stdin;
@@ -1024,7 +1024,7 @@ COPY public.wagtailimages_rendition (id, file, width, height, focal_point_key, f
 --
 -- TOC entry 4016 (class 0 OID 82649)
 -- Dependencies: 302
--- Data for Name: wagtailimages_uploadedimage; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailimages_uploadedimage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailimages_uploadedimage (id, file, uploaded_by_user_id) FROM stdin;
@@ -1034,7 +1034,7 @@ COPY public.wagtailimages_uploadedimage (id, file, uploaded_by_user_id) FROM std
 --
 -- TOC entry 4018 (class 0 OID 82663)
 -- Dependencies: 304
--- Data for Name: wagtailredirects_redirect; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailredirects_redirect; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailredirects_redirect (id, old_path, is_permanent, redirect_link, redirect_page_id, site_id, automatically_created, created_at, redirect_page_route_path) FROM stdin;
@@ -1044,7 +1044,7 @@ COPY public.wagtailredirects_redirect (id, old_path, is_permanent, redirect_link
 --
 -- TOC entry 4020 (class 0 OID 82735)
 -- Dependencies: 306
--- Data for Name: wagtailsearch_indexentry; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailsearch_indexentry; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailsearch_indexentry (id, object_id, title_norm, content_type_id, autocomplete, title, body) FROM stdin;
@@ -1058,7 +1058,7 @@ COPY public.wagtailsearch_indexentry (id, object_id, title_norm, content_type_id
 --
 -- TOC entry 4022 (class 0 OID 82754)
 -- Dependencies: 308
--- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: thedatam_user
+-- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language, current_time_zone, avatar, updated_comments_notifications, dismissibles, theme) FROM stdin;
@@ -1069,7 +1069,7 @@ COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_noti
 --
 -- TOC entry 4030 (class 0 OID 0)
 -- Dependencies: 220
--- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.auth_group_id_seq', 2, true);
@@ -1078,7 +1078,7 @@ SELECT pg_catalog.setval('public.auth_group_id_seq', 2, true);
 --
 -- TOC entry 4031 (class 0 OID 0)
 -- Dependencies: 222
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 18, true);
@@ -1087,7 +1087,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 18, true);
 --
 -- TOC entry 4032 (class 0 OID 0)
 -- Dependencies: 218
--- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.auth_permission_id_seq', 179, true);
@@ -1096,7 +1096,7 @@ SELECT pg_catalog.setval('public.auth_permission_id_seq', 179, true);
 --
 -- TOC entry 4033 (class 0 OID 0)
 -- Dependencies: 226
--- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
@@ -1105,7 +1105,7 @@ SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
 --
 -- TOC entry 4034 (class 0 OID 0)
 -- Dependencies: 224
--- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
@@ -1114,7 +1114,7 @@ SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
 --
 -- TOC entry 4035 (class 0 OID 0)
 -- Dependencies: 228
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
@@ -1123,7 +1123,7 @@ SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 --
 -- TOC entry 4036 (class 0 OID 0)
 -- Dependencies: 230
--- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
@@ -1132,7 +1132,7 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 --
 -- TOC entry 4037 (class 0 OID 0)
 -- Dependencies: 216
--- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.django_content_type_id_seq', 44, true);
@@ -1141,7 +1141,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 44, true);
 --
 -- TOC entry 4038 (class 0 OID 0)
 -- Dependencies: 214
--- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.django_migrations_id_seq', 213, true);
@@ -1150,7 +1150,7 @@ SELECT pg_catalog.setval('public.django_migrations_id_seq', 213, true);
 --
 -- TOC entry 4039 (class 0 OID 0)
 -- Dependencies: 254
--- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.taggit_tag_id_seq', 1, false);
@@ -1159,7 +1159,7 @@ SELECT pg_catalog.setval('public.taggit_tag_id_seq', 1, false);
 --
 -- TOC entry 4040 (class 0 OID 0)
 -- Dependencies: 256
--- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.taggit_taggeditem_id_seq', 1, false);
@@ -1168,7 +1168,7 @@ SELECT pg_catalog.setval('public.taggit_taggeditem_id_seq', 1, false);
 --
 -- TOC entry 4041 (class 0 OID 0)
 -- Dependencies: 309
--- Name: thedatabet_bettingtips_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: thedatabet_bettingtips_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.thedatabet_bettingtips_id_seq', 4, true);
@@ -1177,7 +1177,7 @@ SELECT pg_catalog.setval('public.thedatabet_bettingtips_id_seq', 4, true);
 --
 -- TOC entry 4042 (class 0 OID 0)
 -- Dependencies: 258
--- Name: wagtailadmin_admin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailadmin_admin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailadmin_admin_id_seq', 1, false);
@@ -1186,7 +1186,7 @@ SELECT pg_catalog.setval('public.wagtailadmin_admin_id_seq', 1, false);
 --
 -- TOC entry 4043 (class 0 OID 0)
 -- Dependencies: 242
--- Name: wagtailcore_collection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_collection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_collection_id_seq', 3, true);
@@ -1195,7 +1195,7 @@ SELECT pg_catalog.setval('public.wagtailcore_collection_id_seq', 3, true);
 --
 -- TOC entry 4044 (class 0 OID 0)
 -- Dependencies: 250
--- Name: wagtailcore_collectionviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_collectionviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_groups_id_seq', 1, false);
@@ -1204,7 +1204,7 @@ SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_groups_id
 --
 -- TOC entry 4045 (class 0 OID 0)
 -- Dependencies: 248
--- Name: wagtailcore_collectionviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_collectionviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_id_seq', 1, false);
@@ -1213,7 +1213,7 @@ SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_id_seq', 
 --
 -- TOC entry 4046 (class 0 OID 0)
 -- Dependencies: 278
--- Name: wagtailcore_comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_comment_id_seq', 1, false);
@@ -1222,7 +1222,7 @@ SELECT pg_catalog.setval('public.wagtailcore_comment_id_seq', 1, false);
 --
 -- TOC entry 4047 (class 0 OID 0)
 -- Dependencies: 280
--- Name: wagtailcore_commentreply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_commentreply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_commentreply_id_seq', 1, false);
@@ -1231,7 +1231,7 @@ SELECT pg_catalog.setval('public.wagtailcore_commentreply_id_seq', 1, false);
 --
 -- TOC entry 4048 (class 0 OID 0)
 -- Dependencies: 272
--- Name: wagtailcore_groupapprovaltask_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_groupapprovaltask_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_groupapprovaltask_groups_id_seq', 1, true);
@@ -1240,7 +1240,7 @@ SELECT pg_catalog.setval('public.wagtailcore_groupapprovaltask_groups_id_seq', 1
 --
 -- TOC entry 4049 (class 0 OID 0)
 -- Dependencies: 244
--- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_groupcollectionpermission_id_seq', 12, true);
@@ -1249,7 +1249,7 @@ SELECT pg_catalog.setval('public.wagtailcore_groupcollectionpermission_id_seq', 
 --
 -- TOC entry 4050 (class 0 OID 0)
 -- Dependencies: 234
--- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 7, true);
@@ -1258,7 +1258,7 @@ SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 7, tru
 --
 -- TOC entry 4051 (class 0 OID 0)
 -- Dependencies: 276
--- Name: wagtailcore_locale_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_locale_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_locale_id_seq', 1, true);
@@ -1267,7 +1267,7 @@ SELECT pg_catalog.setval('public.wagtailcore_locale_id_seq', 1, true);
 --
 -- TOC entry 4052 (class 0 OID 0)
 -- Dependencies: 284
--- Name: wagtailcore_modellogentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_modellogentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_modellogentry_id_seq', 8, true);
@@ -1276,7 +1276,7 @@ SELECT pg_catalog.setval('public.wagtailcore_modellogentry_id_seq', 8, true);
 --
 -- TOC entry 4053 (class 0 OID 0)
 -- Dependencies: 232
--- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 3, true);
@@ -1285,7 +1285,7 @@ SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 3, true);
 --
 -- TOC entry 4054 (class 0 OID 0)
 -- Dependencies: 274
--- Name: wagtailcore_pagelogentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_pagelogentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_pagelogentry_id_seq', 8, true);
@@ -1294,7 +1294,7 @@ SELECT pg_catalog.setval('public.wagtailcore_pagelogentry_id_seq', 8, true);
 --
 -- TOC entry 4055 (class 0 OID 0)
 -- Dependencies: 236
--- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 4, true);
@@ -1303,7 +1303,7 @@ SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 4, true);
 --
 -- TOC entry 4056 (class 0 OID 0)
 -- Dependencies: 282
--- Name: wagtailcore_pagesubscription_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_pagesubscription_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_pagesubscription_id_seq', 1, true);
@@ -1312,7 +1312,7 @@ SELECT pg_catalog.setval('public.wagtailcore_pagesubscription_id_seq', 1, true);
 --
 -- TOC entry 4057 (class 0 OID 0)
 -- Dependencies: 246
--- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_pageviewrestriction_groups_id_seq', 1, false);
@@ -1321,7 +1321,7 @@ SELECT pg_catalog.setval('public.wagtailcore_pageviewrestriction_groups_id_seq',
 --
 -- TOC entry 4058 (class 0 OID 0)
 -- Dependencies: 238
--- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_pageviewrestriction_id_seq', 1, false);
@@ -1330,7 +1330,7 @@ SELECT pg_catalog.setval('public.wagtailcore_pageviewrestriction_id_seq', 1, fal
 --
 -- TOC entry 4059 (class 0 OID 0)
 -- Dependencies: 286
--- Name: wagtailcore_referenceindex_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_referenceindex_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_referenceindex_id_seq', 11, true);
@@ -1339,7 +1339,7 @@ SELECT pg_catalog.setval('public.wagtailcore_referenceindex_id_seq', 11, true);
 --
 -- TOC entry 4060 (class 0 OID 0)
 -- Dependencies: 240
--- Name: wagtailcore_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_site_id_seq', 2, true);
@@ -1348,7 +1348,7 @@ SELECT pg_catalog.setval('public.wagtailcore_site_id_seq', 2, true);
 --
 -- TOC entry 4061 (class 0 OID 0)
 -- Dependencies: 260
--- Name: wagtailcore_task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_task_id_seq', 1, true);
@@ -1357,7 +1357,7 @@ SELECT pg_catalog.setval('public.wagtailcore_task_id_seq', 1, true);
 --
 -- TOC entry 4062 (class 0 OID 0)
 -- Dependencies: 262
--- Name: wagtailcore_taskstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_taskstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_taskstate_id_seq', 1, false);
@@ -1366,7 +1366,7 @@ SELECT pg_catalog.setval('public.wagtailcore_taskstate_id_seq', 1, false);
 --
 -- TOC entry 4063 (class 0 OID 0)
 -- Dependencies: 264
--- Name: wagtailcore_workflow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_workflow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_workflow_id_seq', 1, true);
@@ -1375,7 +1375,7 @@ SELECT pg_catalog.setval('public.wagtailcore_workflow_id_seq', 1, true);
 --
 -- TOC entry 4064 (class 0 OID 0)
 -- Dependencies: 267
--- Name: wagtailcore_workflowstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_workflowstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_workflowstate_id_seq', 1, false);
@@ -1384,7 +1384,7 @@ SELECT pg_catalog.setval('public.wagtailcore_workflowstate_id_seq', 1, false);
 --
 -- TOC entry 4065 (class 0 OID 0)
 -- Dependencies: 270
--- Name: wagtailcore_workflowtask_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailcore_workflowtask_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_workflowtask_id_seq', 1, true);
@@ -1393,7 +1393,7 @@ SELECT pg_catalog.setval('public.wagtailcore_workflowtask_id_seq', 1, true);
 --
 -- TOC entry 4066 (class 0 OID 0)
 -- Dependencies: 289
--- Name: wagtaildocs_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtaildocs_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtaildocs_document_id_seq', 3, true);
@@ -1402,7 +1402,7 @@ SELECT pg_catalog.setval('public.wagtaildocs_document_id_seq', 3, true);
 --
 -- TOC entry 4067 (class 0 OID 0)
 -- Dependencies: 291
--- Name: wagtaildocs_uploadeddocument_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtaildocs_uploadeddocument_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtaildocs_uploadeddocument_id_seq', 1, false);
@@ -1411,7 +1411,7 @@ SELECT pg_catalog.setval('public.wagtaildocs_uploadeddocument_id_seq', 1, false)
 --
 -- TOC entry 4068 (class 0 OID 0)
 -- Dependencies: 293
--- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailembeds_embed_id_seq', 1, false);
@@ -1420,7 +1420,7 @@ SELECT pg_catalog.setval('public.wagtailembeds_embed_id_seq', 1, false);
 --
 -- TOC entry 4069 (class 0 OID 0)
 -- Dependencies: 295
--- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailforms_formsubmission_id_seq', 1, false);
@@ -1429,7 +1429,7 @@ SELECT pg_catalog.setval('public.wagtailforms_formsubmission_id_seq', 1, false);
 --
 -- TOC entry 4070 (class 0 OID 0)
 -- Dependencies: 297
--- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailimages_image_id_seq', 5, true);
@@ -1438,7 +1438,7 @@ SELECT pg_catalog.setval('public.wagtailimages_image_id_seq', 5, true);
 --
 -- TOC entry 4071 (class 0 OID 0)
 -- Dependencies: 299
--- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 11, true);
@@ -1447,7 +1447,7 @@ SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 11, true);
 --
 -- TOC entry 4072 (class 0 OID 0)
 -- Dependencies: 301
--- Name: wagtailimages_uploadedimage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailimages_uploadedimage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailimages_uploadedimage_id_seq', 1, false);
@@ -1456,7 +1456,7 @@ SELECT pg_catalog.setval('public.wagtailimages_uploadedimage_id_seq', 1, false);
 --
 -- TOC entry 4073 (class 0 OID 0)
 -- Dependencies: 303
--- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailredirects_redirect_id_seq', 1, false);
@@ -1465,7 +1465,7 @@ SELECT pg_catalog.setval('public.wagtailredirects_redirect_id_seq', 1, false);
 --
 -- TOC entry 4074 (class 0 OID 0)
 -- Dependencies: 305
--- Name: wagtailsearch_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailsearch_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailsearch_indexentry_id_seq', 16, true);
@@ -1474,13 +1474,13 @@ SELECT pg_catalog.setval('public.wagtailsearch_indexentry_id_seq', 16, true);
 --
 -- TOC entry 4075 (class 0 OID 0)
 -- Dependencies: 307
--- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: thedatam_user
+-- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailusers_userprofile_id_seq', 1, true);
 
 
--- Completed on 2024-05-23 21:49:21
+-- Completed on 2024-05-23 21:57:56
 
 --
 -- PostgreSQL database dump complete
