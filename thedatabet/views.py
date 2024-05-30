@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 from rest_framework import generics
 
-from .scripts import main
+from .forebet import main
 from .models import BettingTips
 from .serializers import BettingTipsSerializer
 
