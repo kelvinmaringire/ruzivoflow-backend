@@ -1,7 +1,10 @@
 import json
+import datetime
 from urllib.parse import urljoin, urlparse, parse_qs
 from datetime import datetime, timedelta
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+
+from .models import BetwayOdds
 
 
 def main():
@@ -10,6 +13,7 @@ def main():
     context = browser.new_context()
     context.set_default_timeout(timeout=60000)
     page = context.new_page()
+
 
     print("Opening new page ")
 
@@ -214,6 +218,13 @@ def main():
             })
     with open('games.json', 'w') as f:
         json.dump(games, f, indent=4)
+    today = datetime.now()
+    tomo = today + timedelta(days=1)
+    games_json = json.loads(games)
+    BetwayOdds.objects.create(
+        date=tomo,
+        games=games_json
+    )
     print("Closing Browser")
     browser.close()
     print("Stopping Playwright")

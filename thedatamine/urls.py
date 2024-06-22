@@ -11,7 +11,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from thedatabet.views import run_main_script, BettingTipsList
+from thedatabet.views import run_main_script, BettingTipsList, BettingStatsList
 
 from .api import api_router
 
@@ -26,6 +26,7 @@ urlpatterns = [
 
     path('run_script/', run_main_script),
     path('betting_tips/', BettingTipsList.as_view()),
+    path('betting_stats/', BettingStatsList.as_view()),
 ]
 
 

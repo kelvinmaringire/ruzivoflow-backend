@@ -3,6 +3,7 @@ import json
 import urllib
 from datetime import datetime, timedelta
 
+from unidecode import unidecode
 import numpy as np
 import pandas as pd
 
@@ -44,11 +45,13 @@ def main():
     # Get today's date
     today_date = datetime.now()
 
+    # Subtract two days to get "the day before yesterday"
+    yesterday_date = today_date - timedelta(days=1)
+
     # Format today's date as a string in 'YYYY-MM-DD' format
-    formatted_date = today_date.strftime('%Y-%m-%d')
+    formatted_date = yesterday_date.strftime('%Y-%m-%d')
 
     end_year, end_month, end_day = map(int, formatted_date.split('-'))
-
 
     start_date = datetime(start_year, start_month, start_day)
     end_date = datetime(end_year, end_month, end_day)
@@ -114,6 +117,11 @@ def main():
     games_df["goalsavg"] = games_df["goalsavg"].astype("float16")
     games_df["host_sc_pr"] = games_df["host_sc_pr"].astype("int16")
     games_df["guest_sc_pr"] = games_df["guest_sc_pr"].astype("int16")
+    # Remove outliers
+    games_df = games_df[(games_df['Host_SC'] <= 8) & (games_df['Guest_SC'] <= 8)]
+    # Replace special characters in specific columns
+    games_df['HOST_NAME'] = games_df['HOST_NAME'].apply(lambda x: unidecode(x))
+    games_df['GUEST_NAME'] = games_df['GUEST_NAME'].apply(lambda x: unidecode(x))
 
     print("Changing Datatypes")
 
@@ -149,10 +157,10 @@ def main():
         level=0, drop=True)
 
     # If you want to fill NaN values with 0 for the first 4 rows, you can use fillna(0)
-    games_df['Host_Perfom'].fillna(0, inplace=True)
-    games_df['Guest_Perfom'].fillna(0, inplace=True)
-    games_df['Host_Concede'].fillna(0, inplace=True)
-    games_df['Guest_Concede'].fillna(0, inplace=True)
+    games_df['Host_Perfom'] = games_df['Host_Perfom'].fillna(0)
+    games_df['Guest_Perfom'] = games_df['Guest_Perfom'].fillna(0)
+    games_df['Host_Concede'] = games_df['Host_Concede'].fillna(0)
+    games_df['Guest_Concede'] = games_df['Guest_Concede'].fillna(0)
 
     # Now df contains a new column 'avg_goals_last_5_games' with the average goals of the last 5 games for each row
     print("Host_Perfom, Guest_Perfom, Host_Concede & Guest_Concede")
@@ -165,6 +173,11 @@ def main():
 
     # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)
+
+    # Normalize features
+    #scaler = StandardScaler()
+    #X_train = scaler.fit_transform(X_train)
+    #X_test = scaler.transform(X_test)
 
     # Train separate models for each target variable using RandomForestRegressor
     models = {}
@@ -221,7 +234,6 @@ def main():
     new_games = new_r[0]
     new_leagues = new_r[1]
 
-    new_games[0]
     new_games_df = pd.DataFrame(new_games,
                                 columns=["DATE_BAH", "league_id", "Pred_1", "Pred_X", "Pred_2", "host_id", "guest_id",
                                          "HOST_NAME", "GUEST_NAME", "Host_SC", "Guest_SC", "host_sc_pr", "guest_sc_pr",
@@ -242,6 +254,7 @@ def main():
     new_games_df["league"] = new_games_df["league_id"].map(new_leagues_df.iloc[1])
 
     new_games_df["DATE_BAH"] = new_games_df["DATE_BAH"].astype("datetime64[ns]")
+    new_games_df["DATE_BAH"] = new_games_df["DATE_BAH"].dt.strftime('%m/%d %H:%M')
     new_games_df["league_id"] = new_games_df["league_id"].astype("int16")
     new_games_df["host_id"] = new_games_df["host_id"].astype("int16")
     new_games_df["guest_id"] = new_games_df["guest_id"].astype("int16")
@@ -251,6 +264,9 @@ def main():
     new_games_df["goalsavg"] = new_games_df["goalsavg"].astype("float16")
     new_games_df["host_sc_pr"] = new_games_df["host_sc_pr"].astype("int16")
     new_games_df["guest_sc_pr"] = new_games_df["guest_sc_pr"].astype("int16")
+    # Replace special characters in specific columns
+    new_games_df['HOST_NAME'] = new_games_df['HOST_NAME'].apply(lambda x: unidecode(x))
+    new_games_df['GUEST_NAME'] = new_games_df['GUEST_NAME'].apply(lambda x: unidecode(x))
 
     print("New games dataframe")
 
@@ -278,6 +294,7 @@ def main():
     # Drop rows with null values in 'Host_Perfom' and 'Guest_Perfom' columns
     new_games_df.dropna(subset=['Host_Perfom', 'Guest_Perfom'], inplace=True)
 
+
     print("New games Host_Perfom, Guest_Perfom, Host_Concede & Guest_Concede")
 
     # Assuming new_games_df is your new DataFrame containing the data to be predicted
@@ -292,35 +309,43 @@ def main():
 
     # Now, new_games_df contains the predicted values in the "Predicted_Host_SC" and "Predicted_Guest_SC" columns
 
+    print("Convert to 2 decimal places")
+    # Round specific float columns to two decimal places
+    new_games_df['Predicted_Host_SC'] = new_games_df['Predicted_Host_SC'].round(2)
+    new_games_df['Predicted_Guest_SC'] = new_games_df['Predicted_Guest_SC'].round(2)
+    new_games_df['Predicted_result'] = new_games_df['Predicted_result'].round(2)
+    new_games_df['Host_Perfom'] = new_games_df['Host_Perfom'].round(2)
+    new_games_df['Host_Concede'] = new_games_df['Host_Concede'].round(2)
+    new_games_df['Guest_Perfom'] = new_games_df['Guest_Perfom'].round(2)
+    new_games_df['Guest_Concede'] = new_games_df['Guest_Concede'].round(2)
+    #new_games_df['goalsavg'] = new_games_df['goalsavg'].round(2)
+
     print("New games predictions")
 
     new_games_df["home_win"] = np.where(
-        (new_games_df['Predicted_Host_SC'] > new_games_df['Predicted_Guest_SC'] + 1) &
-        (new_games_df['Predicted_result'] < 1.3) &
-        (new_games_df['Host_Perfom'] < new_games_df['Guest_Concede']),
-        1, 0
-    )
+        (new_games_df['Predicted_Host_SC'] > (new_games_df['Predicted_Guest_SC'] + 1)) &
+         (new_games_df['Predicted_result'] < 1.3) &
+         (new_games_df['Host_Perfom'] < new_games_df['Guest_Concede']),
+         1, 0)
 
     new_games_df["away_win"] = np.where(
-        (new_games_df['Predicted_Host_SC'] + 1.5 < new_games_df['Predicted_Guest_SC']) &
+        ((new_games_df['Predicted_Host_SC'] + 1.5) < new_games_df['Predicted_Guest_SC']) &
         (new_games_df['Predicted_result'] > 2.8) &
         (new_games_df['Guest_Perfom'] < new_games_df['Host_Concede']),
-        1, 0
-    )
+        1, 0)
 
     new_games_df["over_25"] = np.where(
-        (new_games_df['Predicted_Host_SC'] + new_games_df['Predicted_Guest_SC'] > 3) &
+        ((new_games_df['Predicted_Host_SC'] + new_games_df['Predicted_Guest_SC']) > 3) &
         (new_games_df['goalsavg'] > 3) &
-        (new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
-            'Guest_Concede'] > 5.8),
-        1, 0
-    )
+        ((new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
+            'Guest_Concede']) > 5.8),
+        1, 0)
 
     new_games_df["under_25"] = np.where(
-        (new_games_df['Predicted_Host_SC'] + new_games_df['Predicted_Guest_SC'] < 1.5) &
+        ((new_games_df['Predicted_Host_SC'] + new_games_df['Predicted_Guest_SC']) < 1.5) &
         (new_games_df['goalsavg'] < 1.5) &
-        (new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
-            'Guest_Concede'] < 4.5),
+        ((new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] +
+          new_games_df['Guest_Perfom'] + new_games_df['Guest_Concede']) < 4.5),
         1, 0
     )
 
@@ -328,8 +353,8 @@ def main():
         (new_games_df['Predicted_Host_SC'] > 1.75) & (new_games_df['Predicted_Guest_SC'] > 1.75) &
         (new_games_df['goalsavg'] > 3) &
         (new_games_df['Predicted_result'] >= 1.75) & (new_games_df['Predicted_result'] <= 2.25) &
-        (new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
-            'Guest_Concede'] > 6),
+        ((new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
+            'Guest_Concede']) > 6),
         1, 0
     )
 
@@ -350,16 +375,16 @@ def main():
     )
 
     new_games_df["home_draw"] = np.where(
-        (new_games_df['Pred_1'] + new_games_df['Pred_X'] > 75) &
-        (new_games_df['Predicted_Host_SC'] > new_games_df['Predicted_Guest_SC'] + 0.5) &
-        (new_games_df['Predicted_result'] < 1.5) &
-        (new_games_df['Host_Perfom'] < new_games_df['Guest_Concede']),
-        1, 0
-    )
+        ((new_games_df['Pred_1'] + new_games_df['Pred_X']) > 75) &
+        (new_games_df['Predicted_Host_SC'] > (new_games_df['Predicted_Guest_SC'] + 0.5)) &
+         (new_games_df['Predicted_result'] < 1.5) &
+         (new_games_df['Host_Perfom'] < new_games_df['Guest_Concede']),
+         1, 0
+         )
 
     new_games_df["away_draw"] = np.where(
         (new_games_df['Pred_2'] + new_games_df['Pred_X'] > 75) &
-        (new_games_df['Predicted_Host_SC'] + 0.5 < new_games_df['Predicted_Guest_SC']) &
+        ((new_games_df['Predicted_Host_SC'] + 0.5) < new_games_df['Predicted_Guest_SC']) &
         (new_games_df['Predicted_result'] > 2.5) &
         (new_games_df['Guest_Perfom'] < new_games_df['Host_Concede']),
         1, 0
@@ -380,7 +405,7 @@ def main():
         guest_sc_mse=regression_metrics['Guest_SC']['Mean Squared Error'],
         guest_sc_r2=regression_metrics['Guest_SC']['R-squared'],
         result_mse=regression_metrics['result']['Mean Squared Error'],
-        result_r2=regression_metrics['result']['R-squared']
+        result_r2=regression_metrics['result']['R-squared'],
     )
 
     print("Betting tips and regression metrics saved.")
