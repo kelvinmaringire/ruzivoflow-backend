@@ -220,7 +220,7 @@ def main():
         json.dump(games, f, indent=4)
     today = datetime.now()
     tomo = today + timedelta(days=1)
-    games_json = json.loads(games)
+    games_json = json.dumps(games)
     BetwayOdds.objects.create(
         date=tomo,
         games=games_json
