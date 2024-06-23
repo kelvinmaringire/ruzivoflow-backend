@@ -18,7 +18,7 @@ from .api import api_router
 urlpatterns = [
     path('api/v2/', api_router.urls),
     path("django-admin/", admin.site.urls),
-    path("admin", include(wagtailadmin_urls)),
+    path("", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
