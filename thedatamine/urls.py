@@ -17,9 +17,9 @@ from .api import api_router
 
 urlpatterns = [
     path('api/v2/', api_router.urls),
-    path("django-admin/", admin.site.urls),
-    path("", include(wagtailadmin_urls)),
-    path("documents/", include(wagtaildocs_urls)),
+    path("django-admin/", admin.site.urls, name="djangoadmin"),
+    path("/wagtail-admin", include(wagtailadmin_urls), name="wagtailadmin"),
+    path("documents/", include(wagtaildocs_urls), name="documents"),
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

@@ -3,6 +3,7 @@ from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
 
+
 @register_snippet
 class BettingTips(models.Model):
     date = models.DateField()
@@ -28,7 +29,8 @@ class BetwayOdds(models.Model):
     odds = models.JSONField()
 
     panels = [
-        FieldPanel("date")
+        FieldPanel("date"),
+        FieldPanel("odds")
     ]
 
     def __str__(self):

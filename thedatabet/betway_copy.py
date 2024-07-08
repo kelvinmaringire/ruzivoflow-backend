@@ -1,20 +1,24 @@
 import json
+import datetime
+from asgiref.sync import sync_to_async
 from urllib.parse import urljoin, urlparse, parse_qs
 from datetime import datetime, timedelta
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+
+from .models import BetwayOdds
 
 
 def main():
     playwright = sync_playwright().start()
     browser = playwright.chromium.launch()
     context = browser.new_context()
-    context.set_default_timeout(timeout=300000)
+    context.set_default_timeout(timeout=60000)
     page = context.new_page()
+
 
     print("Opening new page ")
 
     games = []
-
     countries = [
         'eng', 'esp', 'ger', 'ita', 'fra', 'rsa', 'por', 'netherlands', 'usa', 'dza', 'arg', 'aut', 'aut_am',
         'aze', 'bel', 'bol', 'bra', 'bgr', 'canada', 'challenger', 'chi', 'chn', 'clubs', 'col', 'cro', 'cze', 'den',
@@ -23,10 +27,23 @@ def main():
         'par', 'per', 'phi', 'pol', 'republic_of_korea', 'rou', 'sco', 'sen', 'singapore', 'spain_amateur', 'swe',
         'challenger', 'sui', 'trinidad_and_tobago', 'tun', 'tur_am', 'uae', 'ukr', 'ury', 'uzb', 'vnm', 'zambia'
     ]
+    countries1 = [
+         'swe',
+        'challenger', 'sui', 'trinidad_and_tobago', 'tun', 'tur_am', 'uae', 'ukr', 'ury', 'uzb', 'vnm', 'zambia'
+    ]
     for country in countries:
         country_url = f'https://www.betway.co.za/sport/soccer/{country}/'
-        page.goto(country_url)
-        relative_game_url_elements = page.locator('div#fixturesToReplace div.eventRow div#eventDetails_0 > div.inplayStatusDetails.PaddingScreen > a').all()
+        try:
+            page.goto(country_url)
+            page.wait_for_load_state('networkidle')
+        except PlaywrightTimeoutError:
+            continue
+
+        try:
+            relative_game_url_elements = page.locator('div#fixturesToReplace div.eventRow div#eventDetails_0 > div.inplayStatusDetails.PaddingScreen > a').all()
+        except PlaywrightTimeoutError:
+            continue
+
         relative_game_urls = [url.get_attribute('href') for url in relative_game_url_elements]
         today = datetime.today()
         tomorrow = today + timedelta(days=1)
@@ -72,46 +89,48 @@ def main():
             away_team = match_result_1x2[2].strip()
 
             # Home Win
-            home_target_element = page.locator(
-                '[data-translate-market="Match Result (1X2)"]' f'[data-translate-key="{home_team}"]')
-            home_parent_locator = home_target_element.locator('xpath=..').locator('xpath=..')
-            home_element_with_new_line = home_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                home_target_element = page.locator(
+                    '[data-translate-market="Match Result (1X2)"]' f'[data-translate-key="{home_team}"]')
+                home_parent_locator = home_target_element.locator('xpath=..').locator('xpath=..')
+                home_element_with_new_line = home_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 home_win = float(home_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 home_win = None
 
             # Away Win
-            away_target_element = page.locator(
-                '[data-translate-market="Match Result (1X2)"]' f'[data-translate-key="{away_team}"]')
-            away_parent_locator = away_target_element.locator('xpath=..').locator('xpath=..')
-            away_element_with_new_line = away_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                away_target_element = page.locator(
+                    '[data-translate-market="Match Result (1X2)"]' f'[data-translate-key="{away_team}"]')
+                away_parent_locator = away_target_element.locator('xpath=..').locator('xpath=..')
+                away_element_with_new_line = away_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 away_win = float(away_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 away_win = None
 
             double_chances = page.locator("[data-translate-market='Double Chance']" "[data-translate-key='Draw']").all()
 
             if double_chances:
+
                 # Home or Draw
-                home_draw_target_element = double_chances[0]
-                home_draw_parent_locator = home_draw_target_element.locator('xpath=..').locator('xpath=..')
-                home_draw_element_with_new_line = home_draw_parent_locator.locator(
-                    'div.outcome-pricedecimal').text_content()
                 try:
+                    home_draw_target_element = double_chances[0]
+                    home_draw_parent_locator = home_draw_target_element.locator('xpath=..').locator('xpath=..')
+                    home_draw_element_with_new_line = home_draw_parent_locator.locator(
+                        'div.outcome-pricedecimal').text_content()
                     home_draw = float(home_draw_element_with_new_line.strip())
-                except AttributeError:
+                except PlaywrightTimeoutError:
                     home_draw = None
 
-                # Away or Draw
-                away_draw_target_element = double_chances[1]
-                away_draw_parent_locator = away_draw_target_element.locator('xpath=..').locator('xpath=..')
-                away_draw_element_with_new_line = away_draw_parent_locator.locator(
-                    'div.outcome-pricedecimal').text_content()
+
                 try:
+                    # Away or Draw
+                    away_draw_target_element = double_chances[1]
+                    away_draw_parent_locator = away_draw_target_element.locator('xpath=..').locator('xpath=..')
+                    away_draw_element_with_new_line = away_draw_parent_locator.locator(
+                        'div.outcome-pricedecimal').text_content()
                     away_draw = float(away_draw_element_with_new_line.strip())
-                except AttributeError:
+                except PlaywrightTimeoutError:
                     away_draw = None
 
             else:
@@ -119,63 +138,65 @@ def main():
                 away_draw = None
 
             # Over 1.5
-            over15_target_element = page.locator(
-                "[data-translate-market='Overs/Unders']" "[data-translate-key='Over 1.5']")
-            over15_parent_locator = over15_target_element.locator('xpath=..').locator('xpath=..')
-            over15_element_with_new_line = over15_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                over15_target_element = page.locator(
+                    "[data-translate-market='Overs/Unders']" "[data-translate-key='Over 1.5']")
+                over15_parent_locator = over15_target_element.locator('xpath=..').locator('xpath=..')
+                over15_element_with_new_line = over15_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 over15 = float(over15_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 over15 = None
 
             # Under 3.5
-            under35_target_element = page.locator(
-                "[data-translate-market='Overs/Unders']" "[data-translate-key='Under 3.5']")
-            under35_parent_locator = under35_target_element.locator('xpath=..').locator('xpath=..')
-            under35_element_with_new_line = under35_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                under35_target_element = page.locator(
+                    "[data-translate-market='Overs/Unders']" "[data-translate-key='Under 3.5']")
+                under35_parent_locator = under35_target_element.locator('xpath=..').locator('xpath=..')
+                under35_element_with_new_line = under35_parent_locator.locator(
+                    'div.outcome-pricedecimal').text_content()
                 under35 = float(under35_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 under35 = None
 
             # BTTS Yes
-            bttsy_target_element = page.locator(
-                "[data-translate-market='Both Teams To Score']" "[data-translate-key='Yes']")
-            bttsy_parent_locator = bttsy_target_element.locator('xpath=..').locator('xpath=..')
-            bttsy_element_with_new_line = bttsy_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                bttsy_target_element = page.locator(
+                    "[data-translate-market='Both Teams To Score']" "[data-translate-key='Yes']")
+                bttsy_parent_locator = bttsy_target_element.locator('xpath=..').locator('xpath=..')
+                bttsy_element_with_new_line = bttsy_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 bttsy = float(bttsy_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 bttsy = None
 
             # BTTS No
-            bttsn_target_element = page.locator(
-                "[data-translate-market='Both Teams To Score']" "[data-translate-key='No']")
-            bttsn_parent_locator = bttsn_target_element.locator('xpath=..').locator('xpath=..')
-            bttsn_element_with_new_line = bttsn_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                bttsn_target_element = page.locator(
+                    "[data-translate-market='Both Teams To Score']" "[data-translate-key='No']")
+                bttsn_parent_locator = bttsn_target_element.locator('xpath=..').locator('xpath=..')
+                bttsn_element_with_new_line = bttsn_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 bttsn = float(bttsn_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 bttsn = None
 
+
             # Home Over 0.5
-            home05_target_element = page.locator(
-                f'[data-translate-market="{home_team} Total"]' '[data-translate-key="Over 0.5"]')
-            home05_parent_locator = home05_target_element.locator('xpath=..').locator('xpath=..')
-            home05_element_with_new_line = home05_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                home05_target_element = page.locator(
+                    f'[data-translate-market="{home_team} Total"]' '[data-translate-key="Over 0.5"]')
+                home05_parent_locator = home05_target_element.locator('xpath=..').locator('xpath=..')
+                home05_element_with_new_line = home05_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 home05 = float(home05_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 home05 = None
 
             # Away Over 0.5
-            away05_target_element = page.locator(
-                f'[data-translate-market="{away_team} Total"]' '[data-translate-key="Over 0.5"]')
-            away05_parent_locator = away05_target_element.locator('xpath=..').locator('xpath=..')
-            away05_element_with_new_line = away05_parent_locator.locator('div.outcome-pricedecimal').text_content()
             try:
+                away05_target_element = page.locator(
+                    f'[data-translate-market="{away_team} Total"]' '[data-translate-key="Over 0.5"]')
+                away05_parent_locator = away05_target_element.locator('xpath=..').locator('xpath=..')
+                away05_element_with_new_line = away05_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 away05 = float(away05_element_with_new_line.strip())
-            except AttributeError:
+            except PlaywrightTimeoutError:
                 away05 = None
 
             games.append({
@@ -198,5 +219,14 @@ def main():
             })
     with open('games.json', 'w') as f:
         json.dump(games, f, indent=4)
+    today = datetime.now()
+    tomo = today + timedelta(days=1)
+    games_json = json.dumps(games)
+    await sync_to_async(BetwayOdds.objects.create)(
+        date=tomo,
+        odds=games_json
+    )
     print("Closing Browser")
     browser.close()
+    print("Stopping Playwright")
+    playwright.stop()
