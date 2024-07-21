@@ -277,7 +277,7 @@ def main():
     over_25_len = len(over_25_df)
     if not over_25_df.empty:
         over_25_percentage = round(
-            (over_25_df[over_25_df['Host_SC'] + over_25_df['Guest_SC'] > 2.5].shape[0] / over_25_df.shape[0]) * 100, 2)
+            (over_25_df[over_25_df['Host_SC'] + over_25_df['Guest_SC'] > 1.5].shape[0] / over_25_df.shape[0]) * 100, 2)
     else:
         over_25_percentage = 0
 
@@ -285,7 +285,7 @@ def main():
     under_25_len = len(under_25_df)
     if not under_25_df.empty:
         under_25_percentage = round(
-            (under_25_df[under_25_df['Host_SC'] + under_25_df['Guest_SC'] < 2.5].shape[0] / under_25_df.shape[0]) * 100,
+            (under_25_df[under_25_df['Host_SC'] + under_25_df['Guest_SC'] < 3.5].shape[0] / under_25_df.shape[0]) * 100,
             2)
     else:
         under_25_percentage = 0

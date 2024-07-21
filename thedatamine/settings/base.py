@@ -44,11 +44,12 @@ INSTALLED_APPS = [
     "wagtail",
     'wagtail.api.v2',
 
+    "django_cron",
     "modelcluster",
     "taggit",
     "rest_framework",
-    'rest_framework_simplejwt',
-    'corsheaders',
+    "rest_framework_simplejwt",
+    "corsheaders",
 
     "home",
     "accounts",
@@ -72,6 +73,16 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+ALLOW_PARALLEL_RUNS = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRON_CLASSES = [
+    "thedatabet.cron.ForebetData",
+    "thedatabet.cron.StatsData",
+    "thedatabet.cron.BetwayData",
+]
 
 ############### End New Settings ################
 
@@ -117,7 +128,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "thedatam_db",
-        "USER": "thedatam_user",
+        "USER": "postgres",
         "PASSWORD": "talibk700",
         "HOST": "127.0.0.1",
         "PORT": "5432",
