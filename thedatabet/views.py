@@ -1,10 +1,7 @@
-from django.http import HttpResponse
-
 from rest_framework import generics
 
-from .forebet import main
-from .models import BettingTips, BettingStats
-from .serializers import BettingTipsSerializer, BettingStatsSerializer
+from .models import BettingTips, BettingStats, BetwayOdds
+from .serializers import BettingTipsSerializer, BettingStatsSerializer, BetwayOddsSerializer
 
 
 class BettingTipsList(generics.ListAPIView):
@@ -17,6 +14,6 @@ class BettingStatsList(generics.ListAPIView):
     serializer_class = BettingStatsSerializer
 
 
-def run_main_script(request):
-    main()
-    return HttpResponse("Script ran successfully!")
+class BetwayOddsList(generics.ListAPIView):
+    queryset = BetwayOdds.objects.all()
+    serializer_class = BetwayOddsSerializer

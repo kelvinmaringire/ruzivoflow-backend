@@ -11,7 +11,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from thedatabet.views import run_main_script, BettingTipsList, BettingStatsList
+from thedatabet.views import BettingTipsList, BettingStatsList, BetwayOddsList
 
 from .api import api_router
 
@@ -24,9 +24,9 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('run_script/', run_main_script),
     path('betting_tips/', BettingTipsList.as_view()),
     path('betting_stats/', BettingStatsList.as_view()),
+    path('betway_odds/', BetwayOddsList.as_view())
 ]
 
 

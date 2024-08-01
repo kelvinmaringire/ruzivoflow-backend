@@ -30,7 +30,6 @@ class BetwayOdds(models.Model):
 
     panels = [
         FieldPanel("date"),
-        FieldPanel("odds")
     ]
 
     def __str__(self):
