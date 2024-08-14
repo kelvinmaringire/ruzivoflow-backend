@@ -76,8 +76,13 @@ def fetch_odds():
             page.wait_for_load_state('networkidle')
             match_result_1x2 = page.locator(
                 "[data-translate-market='Match Result (1X2)']" "[data-translate-type='outcome']").all_text_contents()
-            home_team = match_result_1x2[0].strip()
-            away_team = match_result_1x2[2].strip()
+            if len(match_result_1x2) >= 3:
+                home_team = match_result_1x2[0].strip()
+                away_team = match_result_1x2[2].strip()
+            else:
+                print(f"Could not retrieve match result for country {country}, skipping...")
+                continue  # Skip this game and move on to the next one
+
 
             def safe_float(value):
                 try:

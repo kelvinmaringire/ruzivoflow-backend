@@ -1,6 +1,6 @@
 from os.path import basename, splitext
+
 from rest_framework.serializers import Field
-from django.conf import settings
 
 
 class ImageSerializedField(Field):
@@ -12,6 +12,4 @@ class ImageSerializedField(Field):
             "image": request.build_absolute_uri(value.file.url),
             "name": filename_without_extension
         }
-
-
 

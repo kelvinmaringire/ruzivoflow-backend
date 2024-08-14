@@ -1,0 +1,183 @@
+
+
+su - root
+
+sudo apt update
+
+sudo apt upgrade
+
+sudo ufw status
+
+sudo ufw enable
+
+sudo ufw allow 80/tcp
+
+sudo ufw allow 443/tcp
+
+sudo ufw reload
+
+
+sudo apt install nginx
+
+sudo nginx -t   #test conf
+
+sudo service nginx start
+
+sudo systemctl restart nginx
+
+sudo apt install build-essential libpq-dev python3-dev python3-venv
+
+sudo apt install certbot python3-certbot-nginx
+
+sudo certbot --nginx -d thedatamine.site
+
+sudo apt install postgresql postgresql-contrib
+
+sudo apt install -y postgresql-common
+sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+
+sudo -i -u postgres psql
+
+/c thedatam_db
+
+CREATE USER thedatam_user WITH PASSWORD 'talibk700';
+
+CREATE DATABASE thedatam_db;
+
+GRANT ALL PRIVILEGES ON DATABASE thedatam_db TO thedatam_user;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO thedatam_user;
+
+GRANT USAGE ON SCHEMA public TO thedatam_user;
+
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO thedatam_user;
+
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO thedatam_user;
+
+ALTER USER postgres WITH PASSWORD 'talibk700';
+
+ALTER USER thedatam_user WITH SUPERUSER;
+
+createdb thedatam_db
+
+# Create the database
+sudo -u postgres createdb thedatam_db
+
+# Upload data into the database
+sudo -u postgres psql thedatam_db < thedatam_db_230624.sql
+
+# Grant all privileges to the user postgres
+sudo -u postgres psql
+GRANT ALL PRIVILEGES ON DATABASE thedatam_db TO postgres;
+\q
+
+
+
+
+
+
+\q
+
+exit
+
+cd /var/www
+
+git clone https://github.com/kelvinmaringire/api.thedatamine.io.git
+
+cd api.thedatamine.io
+
+python3 -m venv myenv
+
+source myenv/bin/activate
+
+sudo -u postgres psql thedatam_db < thedatam_db_230624.sql
+
+pip install -r requirements.txt
+
+pip install gunicorn
+
+playwright install
+
+deactivate
+
+
+mkdir conf
+
+nano conf/gunicorn_config.py
+
+command = '/var/www/api.thedatamine.io/myenv/bin/gunicorn'
+pythonpath = '/var/www/api.thedatamine.io'
+bind = '156.155.253.131:8000'
+workers = 3
+
+gunicorn -c conf/gunicorn_config.py thedatamine.wsgi
+
+
+Ctrl Z && bg for playing in the background
+
+sudo service nginx start
+
+nano thedatamine/settings/base.py
+
+STATIC_ROOT = '/var/www/api.thedatamine.io/static/'
+
+MEDIA_ROOT = '/var/www/api.thedatamine.io/media/'
+
+python manage.py collectstatic
+
+sudo nano /etc/nginx/sites-available/thedatamine
+
+server {
+    listen 80;
+    server_name 156.155.253.131;
+
+    location /static/ {
+        alias /var/www/api.thedatamine.io/static/;
+    }
+
+    location / {
+        proxy_pass http://156.155.253.131:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+cd /etc/nginx/sites-enabled/
+
+sudo ln -s /etc/nginx/sites-available/thedatamine
+
+
+sudo systemctl restart nginx
+
+pscp -P 22 forebet_data.json root@156.155.253.131:/root/
+mv /root/forebet_data.json /var/www/api.thedatamine.io/media/documents/
+
+sudo apt install cron
+
+sudo crontab -e
+
+sudo service cron restart
+
+
+53 2 * * * cd /var/www/api.thedatamine.io/ && source myenv/bin/activate && python manage.py forebet_data >> /var/www/api.thedatamine.io/logs/forebet.log 2>&1
+ /tmp/crontab.Pqwz3l/crontab
+tail -f /var/log/syslog
+
+
+
+
+rm -r /path/to/folder
+pwd -> current working directory
+
+
+Database
+
+sudo nano /etc/postgresql/14/main/pg_hba.conf
+
+local   all             postgres                                peer
+To
+local   all             postgres                                md5
+
+pg_dump -U postgres -F c -b -v -f backup.sql thedatam_db

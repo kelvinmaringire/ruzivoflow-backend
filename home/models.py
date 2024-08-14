@@ -5,7 +5,8 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.api import APIField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 
-from .streams import ServicesBlock
+
+from .streams import ServicesBlock, WebsiteBlock
 from .serializers import ImageSerializedField
 
 
@@ -39,6 +40,9 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    websites = StreamField([
+        ('websites', WebsiteBlock()),
+    ], use_json_field=True, blank=False, null=True, collapsed=True,)
 
 
     content_panels = Page.content_panels + [
@@ -60,6 +64,7 @@ class HomePage(Page):
             FieldPanel("landing_page_box_title"),
             FieldPanel("landing_page_box_subtitle"),
             FieldPanel("landing_page_image"),
+            FieldPanel("websites"),
         ], heading="Landing Page", classname="collapsed", icon="image"),
     ]
 
@@ -77,5 +82,9 @@ class HomePage(Page):
         APIField('landing_page_box_title'),
         APIField('landing_page_box_subtitle'),
         APIField('landing_page_image', serializer=ImageSerializedField()),
+        APIField('websites'),
 
     ]
+
+
+
