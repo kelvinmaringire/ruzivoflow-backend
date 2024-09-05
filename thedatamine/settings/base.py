@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "wagtail",
     'wagtail.api.v2',
 
-    "django_cron",
+    "django_crontab",
     "modelcluster",
     "taggit",
     "rest_framework",
@@ -78,11 +78,12 @@ ALLOW_PARALLEL_RUNS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRON_CLASSES = [
-    "thedatabet.cron.ForebetData",
-    "thedatabet.cron.StatsData",
-    "thedatabet.cron.BetwayData",
+CRONJOBS = [
+    ('0 1 * * *', 'thedatabet.cron.stats_data'),
+    ('5 1 * * *', 'thedatabet.cron.forebet_data'),
+    #('0 9 * * *', 'thedatabet.cron.betway_data')
 ]
+
 
 ############### End New Settings ################
 

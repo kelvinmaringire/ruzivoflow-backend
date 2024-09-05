@@ -29,7 +29,9 @@ urlpatterns = [
 
     path('betting_tips/', BettingTipsList.as_view()),
     path('betting_stats/', BettingStatsList.as_view()),
-    path('betway_odds/', BetwayOddsList.as_view())
+    path('betway_odds/', BetwayOddsList.as_view()),
+
+    path('thedataeditor/', include('thedataeditor.urls')),
 ]
 
 

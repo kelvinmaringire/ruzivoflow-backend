@@ -134,7 +134,7 @@ def fetch_odds():
 
             try:
                 over15_target_element = page.locator(
-                    "[data-translate-market='Overs/Unders']" "[data-translate-key='Over 1.5']")
+                    "[data-translate-market='Overs/Unders (Total 1.5)']" "[data-translate-key='Over 1.5']")
                 over15_parent_locator = over15_target_element.locator('xpath=..').locator('xpath=..')
                 over15_element_with_new_line = over15_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 over15 = safe_float(over15_element_with_new_line)
@@ -143,7 +143,7 @@ def fetch_odds():
 
             try:
                 under35_target_element = page.locator(
-                    "[data-translate-market='Overs/Unders']" "[data-translate-key='Under 3.5']")
+                    "[data-translate-market='Overs/Unders (Total 3.5)']" "[data-translate-key='Under 3.5']")
                 under35_parent_locator = under35_target_element.locator('xpath=..').locator('xpath=..')
                 under35_element_with_new_line = under35_parent_locator.locator(
                     'div.outcome-pricedecimal').text_content()
@@ -171,7 +171,7 @@ def fetch_odds():
 
             try:
                 home05_target_element = page.locator(
-                     f'[data-translate-market="{home_team} Total"]' '[data-translate-key="Over 0.5"]')
+                     f'[data-translate-market="{home_team} Total (Total 0.5)"]' '[data-translate-key="Over 0.5"]')
                 home05_parent_locator = home05_target_element.locator('xpath=..').locator('xpath=..')
                 home05_element_with_new_line = home05_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 home05 = safe_float(home05_element_with_new_line)
@@ -180,7 +180,7 @@ def fetch_odds():
 
             try:
                 away05_target_element = page.locator(
-                    f'[data-translate-market="{away_team} Total"]' '[data-translate-key="Over 0.5"]')
+                    f'[data-translate-market="{away_team} Total (Total 0.5)"]' '[data-translate-key="Over 0.5"]')
                 away05_parent_locator = away05_target_element.locator('xpath=..').locator('xpath=..')
                 away05_element_with_new_line = away05_parent_locator.locator('div.outcome-pricedecimal').text_content()
                 away05 = safe_float(away05_element_with_new_line)
