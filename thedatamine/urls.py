@@ -32,6 +32,7 @@ urlpatterns = [
     path('betway_odds/', BetwayOddsList.as_view()),
 
     path('thedataeditor/', include('thedataeditor.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 

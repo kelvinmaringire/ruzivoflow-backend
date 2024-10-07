@@ -1,14 +1,12 @@
 import os
 
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
+from django.conf import settings
 
 from wagtail.images.models import Image
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
-
-from treebeard.mp_tree import MP_Node
 
 
 @register_snippet
@@ -16,14 +14,19 @@ class NodeCategory(models.Model):
     name = models.CharField(max_length=30)
     icon = models.CharField(max_length=30)
     description = models.TextField(null=True, blank=True)
+    header_class = models.CharField(max_length=20, default="bg-primary")
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['id']
+
     panels = [
         FieldPanel("name"),
         FieldPanel("icon"),
-        FieldPanel("description")
+        FieldPanel("description"),
+        FieldPanel("header_class")
     ]
 
 
@@ -55,13 +58,16 @@ class Node(models.Model):
 @register_snippet
 class Workflow(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(max_length=18)
+    description = models.TextField(max_length=200, null=True, blank=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-created', '-updated']
 
     panels = [
         FieldPanel("name"),
@@ -71,7 +77,8 @@ class Workflow(models.Model):
 
 
 @register_snippet
-class NodeItem(MP_Node):
+class NodeItem(models.Model):
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
     workflow = models.ForeignKey(Workflow, on_delete=models.CASCADE)
     node = models.ForeignKey(Node, on_delete=models.CASCADE)
     original_name = models.CharField(max_length=15)
@@ -92,11 +99,28 @@ class NodeItem(MP_Node):
     node_order_by = ['name']
 
     def __str__(self):
-        return self.original_id
+        return self.html_id
 
     panels = [
         FieldPanel("name")
     ]
+
+    def get_ancestors(self):
+        ancestors = []
+        node = self
+        while node.parent:
+            ancestors.append(node.parent)
+            node = node.parent
+        return ancestors
+
+    def get_descendants(self):
+        descendants = []
+        nodes_to_check = list(self.children.all())
+        while nodes_to_check:
+            node = nodes_to_check.pop(0)
+            descendants.append(node)
+            nodes_to_check.extend(node.children.all())
+        return descendants
 
     def delete(self, *args, **kwargs):
         if self.filename:

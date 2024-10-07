@@ -338,30 +338,34 @@ def main():
 
     new_games_df["over_25"] = np.where(
         ((new_games_df['Predicted_Host_SC'] + new_games_df['Predicted_Guest_SC']) > 3) &
-        (new_games_df['goalsavg'] > 3) &
+        ((new_games_df['host_sc_pr'] + new_games_df['guest_sc_pr']) > 2) &
+        (new_games_df['goalsavg'] > 2.5) &
         ((new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
-            'Guest_Concede']) > 5.8),
+            'Guest_Concede']) > 5),
         1, 0)
 
     new_games_df["under_25"] = np.where(
         ((new_games_df['Predicted_Host_SC'] + new_games_df['Predicted_Guest_SC']) < 1.5) &
-        (new_games_df['goalsavg'] < 1.5) &
+        ((new_games_df['host_sc_pr'] + new_games_df['guest_sc_pr']) < 2) &
+        (new_games_df['goalsavg'] < 2) &
         ((new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] +
-          new_games_df['Guest_Perfom'] + new_games_df['Guest_Concede']) < 4.5),
+          new_games_df['Guest_Perfom'] + new_games_df['Guest_Concede']) < 5),
         1, 0
     )
 
     new_games_df["btts"] = np.where(
-        (new_games_df['Predicted_Host_SC'] > 1.75) & (new_games_df['Predicted_Guest_SC'] > 1.75) &
+        (new_games_df['Predicted_Host_SC'] > 1.5) & (new_games_df['Predicted_Guest_SC'] > 1.5) &
+        (new_games_df['host_sc_pr'] > 0) & (new_games_df['guest_sc_pr'] > 0) &
         (new_games_df['goalsavg'] > 3) &
-        (new_games_df['Predicted_result'] >= 1.75) & (new_games_df['Predicted_result'] <= 2.25) &
+        (new_games_df['Predicted_result'] >= 1.5) & (new_games_df['Predicted_result'] <= 2.5) &
         ((new_games_df['Host_Perfom'] + new_games_df['Host_Concede'] + new_games_df['Guest_Perfom'] + new_games_df[
-            'Guest_Concede']) > 6),
+            'Guest_Concede']) > 5),
         1, 0
     )
 
     new_games_df["home_over_15"] = np.where(
         (new_games_df['Predicted_Host_SC'] > 2) &
+        (new_games_df['host_sc_pr'] > 0) &
         (new_games_df['Predicted_result'] < 1.5) &
         (new_games_df['Host_Perfom'] > 1.5) &
         (new_games_df['Guest_Concede'] > 1.5),
@@ -370,7 +374,8 @@ def main():
 
     new_games_df["away_over_15"] = np.where(
         (new_games_df['Predicted_Guest_SC'] > 2) &
-        (new_games_df['Predicted_result'] > 2.5) &
+        (new_games_df['guest_sc_pr'] > 0) &
+        (new_games_df['Predicted_result'] > 2.4) &
         (new_games_df['Guest_Perfom'] > 1.5) &
         (new_games_df['Host_Concede'] > 1.5),
         1, 0

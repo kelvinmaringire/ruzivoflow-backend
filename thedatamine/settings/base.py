@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from datetime import timedelta
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -60,6 +62,8 @@ INSTALLED_APPS = [
 
 ############### New Settings ################
 
+#AUTH_USER_MODEL = "accounts.User"
+
 CORS_ALLOWED_ORIGINS = [
     "https://thedatamine.io",
     "http://thedatamine.io",
@@ -67,6 +71,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:9000",
 ]
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -128,7 +136,7 @@ WSGI_APPLICATION = "thedatamine.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "thedatam_db",
+        "NAME": "thedatam_dbb",
         "USER": "postgres",
         "PASSWORD": "talibk700",
         "HOST": "127.0.0.1",

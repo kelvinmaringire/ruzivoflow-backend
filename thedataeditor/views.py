@@ -70,6 +70,7 @@ class NodeItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = NodeItem.objects.all()
     serializer_class = NodeItemSerializer
 
+"""
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
@@ -85,7 +86,7 @@ class NodeItemDetail(generics.RetrieveUpdateDestroyAPIView):
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
-
+"""
 
 class NodeItemUpdate(generics.UpdateAPIView):
     queryset = NodeItem.objects.all()

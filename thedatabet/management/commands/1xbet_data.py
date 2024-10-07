@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
-from thedatabet.sportsmole import main
+from thedatabet.onexbet import main
+import asyncio
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        main()
+        asyncio.run(main())

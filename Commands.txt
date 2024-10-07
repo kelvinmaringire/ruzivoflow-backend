@@ -1,21 +1,10 @@
-
+pip freeze > requirements.txt
 
 su - root
 
 sudo apt update
 
 sudo apt upgrade
-
-sudo ufw status
-
-sudo ufw enable
-
-sudo ufw allow 80/tcp
-
-sudo ufw allow 443/tcp
-
-sudo ufw reload
-
 
 sudo apt install nginx
 
@@ -25,11 +14,9 @@ sudo service nginx start
 
 sudo systemctl restart nginx
 
+sudo apt install cron
+
 sudo apt install build-essential libpq-dev python3-dev python3-venv
-
-sudo apt install certbot python3-certbot-nginx
-
-sudo certbot --nginx -d thedatamine.site
 
 sudo apt install postgresql postgresql-contrib
 
@@ -38,47 +25,15 @@ sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 
 sudo -i -u postgres psql
 
-/c thedatam_db
-
-CREATE USER thedatam_user WITH PASSWORD 'talibk700';
+ALTER USER postgres WITH PASSWORD 'talibk700';
 
 CREATE DATABASE thedatam_db;
 
-GRANT ALL PRIVILEGES ON DATABASE thedatam_db TO thedatam_user;
-
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO thedatam_user;
-
-GRANT USAGE ON SCHEMA public TO thedatam_user;
-
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO thedatam_user;
-
-GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO thedatam_user;
-
-ALTER USER postgres WITH PASSWORD 'talibk700';
-
-ALTER USER thedatam_user WITH SUPERUSER;
-
-createdb thedatam_db
-
-# Create the database
-sudo -u postgres createdb thedatam_db
-
-# Upload data into the database
-sudo -u postgres psql thedatam_db < thedatam_db_230624.sql
-
-# Grant all privileges to the user postgres
-sudo -u postgres psql
 GRANT ALL PRIVILEGES ON DATABASE thedatam_db TO postgres;
-\q
 
-
-
-
-
+ALTER USER postgres WITH SUPERUSER;
 
 \q
-
-exit
 
 cd /var/www
 
@@ -90,16 +45,15 @@ python3 -m venv myenv
 
 source myenv/bin/activate
 
-sudo -u postgres psql thedatam_db < thedatam_db_230624.sql
+sudo -u postgres psql thedatam_db < thedatam_db_140824.sql
 
 pip install -r requirements.txt
 
-pip install gunicorn
-
 playwright install
 
-deactivate
+playwright install-deps
 
+pip install gunicorn
 
 mkdir conf
 
@@ -119,17 +73,24 @@ sudo service nginx start
 
 nano thedatamine/settings/base.py
 
-STATIC_ROOT = '/var/www/api.thedatamine.io/static/'
 
-MEDIA_ROOT = '/var/www/api.thedatamine.io/media/'
+STATICFILES_DIRS = [
+    "/var/www/api.thedatamine.io/thedatamine/static/",
+]
+
+STATIC_ROOT = "/var/www/api.thedatamine.io/static/"
+
+MEDIA_ROOT = "/var/www/api.thedatamine.io/media/"
 
 python manage.py collectstatic
+
+deactivate
 
 sudo nano /etc/nginx/sites-available/thedatamine
 
 server {
     listen 80;
-    server_name 156.155.253.131;
+    server_name thedatamine.site;
 
     location /static/ {
         alias /var/www/api.thedatamine.io/static/;
@@ -148,24 +109,56 @@ cd /etc/nginx/sites-enabled/
 
 sudo ln -s /etc/nginx/sites-available/thedatamine
 
+sudo rm default
+
+sudo ufw enable
+
+sudo ufw status
+
+sudo ufw allow 80/tcp
+
+sudo ufw allow 8000/tcp
+
+sudo ufw allow 443/tcp
+
+sudo ufw reload
+
+sudo apt install certbot python3-certbot-nginx
+
+sudo certbot --nginx -d thedatamine.site
 
 sudo systemctl restart nginx
 
-pscp -P 22 forebet_data.json root@156.155.253.131:/root/
+pscp -P 22 forebet_data.json root@156.155.253.131:/var/www/api.thedatamine.io/media/documents/
+pscp.exe -P 22 root@156.155.253.131:/var/www/api.thedatamine.io/media/documents/forebet_data.json C:\Users\Ring'az\Desktop
 mv /root/forebet_data.json /var/www/api.thedatamine.io/media/documents/
 
 sudo apt install cron
+
+python manage.py crontab add
+
+python manage.py crontab show
+
+python manage.py crontab remove
 
 sudo crontab -e
 
 sudo service cron restart
 
 
-53 2 * * * cd /var/www/api.thedatamine.io/ && source myenv/bin/activate && python manage.py forebet_data >> /var/www/api.thedatamine.io/logs/forebet.log 2>&1
+* * * * * cd /var/www/api.thedatamine.io/ && source myenv/bin/activate && python manage.py runcrons "thedatabet.cron.StatsData" >> /var/www/api.thedatamine.io/logs/cron.log 2>&1
+
+
+* * * * * source /root/.bashrc && source /var/www/api.thedatamine.io/myenv/bin/activate && python /var/www/api.thedatamine.io/manage.py runcrons >> /var/www/api.thedatamine.io/logs/cron.log 2>&1
+
+* * * * * source /root/.bashrc && source /var/www/api.thedatamine.io/myenv/bin/activate && python /var/www/api.thedatamine.io/manage.py stats_data >> /var/www/api.thedatamine.io/logs/cron.log 2>&1
+
+
+53 2 * * * cd /var/www/api.thedatamine.io/ && source myenv/bin/activate && python manage.py stats_data >> /var/www/api.thedatamine.io/logs/cron.log.log 2>&1
  /tmp/crontab.Pqwz3l/crontab
 tail -f /var/log/syslog
 
-
+tail -f /var/www/api.thedatamine.io/logs/cron.log
 
 
 rm -r /path/to/folder
@@ -181,3 +174,11 @@ To
 local   all             postgres                                md5
 
 pg_dump -U postgres -F c -b -v -f backup.sql thedatam_db
+
+Database in local
+
+\q
+
+cd C:\Users\Ring'az\Documents\Apps\api.thedatamine.io
+
+"C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -p 5432 -U postgres -d thedatam_dbb -f thedatam_db_140824.sql
