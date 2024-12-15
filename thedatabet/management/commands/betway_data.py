@@ -1,7 +1,10 @@
+import asyncio
 from django.core.management.base import BaseCommand
-from thedatabet.betway import main
+from thedatabet.betway_copy import main
 
 
 class Command(BaseCommand):
+    help = "Fetch and save Betway odds."
+
     def handle(self, *args, **options):
-        main()
+        asyncio.run(main())
