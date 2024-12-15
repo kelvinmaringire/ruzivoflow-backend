@@ -1,6 +1,6 @@
 import asyncio
 from django.core.management.base import BaseCommand
-from thedatabet.betway_copy import main
+from thedatabet.betway import main
 
 
 class Command(BaseCommand):

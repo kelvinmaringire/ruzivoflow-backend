@@ -87,9 +87,9 @@ ALLOW_PARALLEL_RUNS = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRONJOBS = [
-    ('0 1 * * *', 'thedatabet.cron.stats_data'),
-    ('5 1 * * *', 'thedatabet.cron.forebet_data'),
-    #('0 9 * * *', 'thedatabet.cron.betway_data')
+    ('0 8 * * *', 'thedatabet.cron.stats_data'),
+    ('0 12 * * *', 'thedatabet.cron.forebet_data'),
+    ('30 2 * * *', 'thedatabet.cron.betway_data')
 ]
 
 
