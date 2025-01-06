@@ -136,7 +136,7 @@ WSGI_APPLICATION = "thedatamine.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "thedatam_dbb",
+        "NAME": "thedatam_db",
         "USER": "postgres",
         "PASSWORD": "talibk700",
         "HOST": "127.0.0.1",
@@ -188,9 +188,15 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
 ]
 
+#STATICFILES_DIRS = [
+#    "/var/www/api.thedatamine.io/thedatamine/static/",
+#]
+
+#STATIC_ROOT = "/var/www/api.thedatamine.io/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
+#MEDIA_ROOT = "/var/www/api.thedatamine.io/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 

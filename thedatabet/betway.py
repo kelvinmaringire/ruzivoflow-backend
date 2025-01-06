@@ -14,7 +14,7 @@ async def fetch_odds():
         context = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
         )
-        context.set_default_timeout(60000)
+        context.set_default_timeout(30000)
         page = await context.new_page()
 
         print("Opening new page")
@@ -233,6 +233,9 @@ async def fetch_odds():
                         'time': time
                     }
                     games.append(game)
+
+        await page.close()
+        await context.close()
 
         return games
 
