@@ -54,6 +54,7 @@ def main():
     end_year, end_month, end_day = map(int, formatted_date.split('-'))
 
     start_date = datetime(start_year, start_month, start_day)
+    # end_date = start_date + timedelta(days=4)
     end_date = datetime(end_year, end_month, end_day)
     delta = timedelta(days=1)
 
@@ -416,8 +417,6 @@ def main():
     )
 
     print("Betting tips and regression metrics saved.")
-
-
 
 
 

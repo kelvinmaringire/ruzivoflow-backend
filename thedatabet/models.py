@@ -17,7 +17,9 @@ class BettingTips(models.Model):
     result_r2 = models.FloatField()
 
     panels = [
-        FieldPanel("date")
+        FieldPanel("date"),
+        FieldPanel("games")
+
     ]
 
     def __str__(self):

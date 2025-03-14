@@ -24,6 +24,7 @@ async def fetch_odds():
         # Iterate through countries and leagues
         for country, leagues in country_leagues.items():
             for league_name, league_id in leagues.items():
+                print(country)
                 print(league_name)
                 print(league_id)
                 # Construct the URL

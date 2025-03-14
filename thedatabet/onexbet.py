@@ -9,6 +9,22 @@ async def main():
         context.set_default_timeout(timeout=60000)
         page = await context.new_page()
         await page.set_viewport_size({"width": 1920, "height": 1080})
+        url = "https://1xbet.com/en/line/football/118587-uefa-champions-league/239514862-benfica-barcelona"
+        await page.goto(url)
+        await page.wait_for_selector('#allBetsTable .markets-canvas canvas')
+        # Screenshot the canvas
+        await page.screenshot(path="canvas.png", full_page=True, timeout=120000, omit_background=False, animations="disabled")
+
+        # (Optional) Use JavaScript to inspect the canvas
+        script = """
+        const canvas = document.querySelector('#allBetsTable .markets-canvas canvas');
+        const context = canvas.getContext('2d');
+        return canvas.toDataURL();
+        """
+        canvas_data_url = page.evaluate(script)
+        print(canvas_data_url)
+        await browser.close()
+        """
         url = "https://1xbet.com/en/line/football"
         await page.goto(url)
         liga_menu = await page.locator(".liga_menu").all()
@@ -18,30 +34,14 @@ async def main():
         for item in liga_menu:
             await item.click()
         print(len(subcategory_menu))
+        
+        """
 
-        await browser.close()
+        #await browser.close()
 
 
 
-"""
-def main():
-    playwright = async_playwright().start()
-    browser = playwright.chromium.launch()
-    context = browser.new_context()
-    context.set_default_timeout(timeout=60000)
-    page = context.new_page()
-    page.set_viewport_size({"width": 1920, "height": 1080})
-    url = "https://1xbet.com/en/line/football"
-    page.goto(url)
-    page.wait_for_load_state('networkidle')
-    tournaments = page.locator(".liga_menu").all()
-    for tournament in tournaments:
-        tournament.click()
-        game_listitems = tournament.locator("ul.event_menu").filter(has_text="11/06/2024").all()
-        for game_url in game_listitems:
-            pass
 
-"""
 
 
 
