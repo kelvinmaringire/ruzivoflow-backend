@@ -110,19 +110,6 @@ sudo mkdir static
 
 sudo mkdir conf
 
-
-
-sudo systemctl restart nginx
-
-sudo nano thedatamine/wsgi.py
-
-change 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thedatamine.settings.dev")
-to 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thedatamine.settings.production")
-
-python manage.py collectstatic
-
 sudo nano conf/gunicorn_config.py
 
 ####################################
@@ -138,6 +125,24 @@ gunicorn -c conf/gunicorn_config.py thedatamine.wsgi
 
 
 Ctrl Z && bg for playing in the background
+
+sudo systemctl restart nginx
+
+sudo nano thedatamine/settings/base.py
+
+
+STATICFILES_DIRS = [
+    "/var/www/api.thedatamine.io/thedatamine/static/",
+]
+
+STATIC_ROOT = "/var/www/api.thedatamine.io/static/"
+
+MEDIA_ROOT = "/var/www/api.thedatamine.io/media/"
+
+sudo chown -R $USER:$USER /var/www/api.thedatamine.io/static  -> incase
+sudo chmod -R 755 /var/www/api.thedatamine.io/static   -> incase
+
+python manage.py collectstatic
 
 deactivate
 
@@ -193,3 +198,39 @@ sudo crontab -e
 sudo service cron restart
 
 
+* * * * * cd /var/www/api.thedatamine.io/ && source myenv/bin/activate && python manage.py runcrons "thedatabet.cron.StatsData" >> /var/www/api.thedatamine.io/logs/cron.log 2>&1
+
+
+* * * * * source /root/.bashrc && source /var/www/api.thedatamine.io/myenv/bin/activate && python /var/www/api.thedatamine.io/manage.py runcrons >> /var/www/api.thedatamine.io/logs/cron.log 2>&1
+
+* * * * * source /root/.bashrc && source /var/www/api.thedatamine.io/myenv/bin/activate && python /var/www/api.thedatamine.io/manage.py stats_data >> /var/www/api.thedatamine.io/logs/cron.log 2>&1
+
+
+53 2 * * * cd /var/www/api.thedatamine.io/ && source myenv/bin/activate && python manage.py stats_data >> /var/www/api.thedatamine.io/logs/cron.log.log 2>&1
+ /tmp/crontab.Pqwz3l/crontab
+tail -f /var/log/syslog
+
+tail -f /var/www/api.thedatamine.io/logs/cron.log
+
+
+rm -r /path/to/folder
+pwd -> current working directory
+
+
+Database
+
+sudo nano /etc/postgresql/14/main/pg_hba.conf
+
+local   all             postgres                                peer
+To
+local   all             postgres                                md5
+
+pg_dump -U postgres -F c -b -v -f backup.sql thedatam_db
+
+Database in local
+
+\q
+
+cd C:\Users\Ring'az\Documents\Apps\api.thedatamine.io
+
+"C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -p 5432 -U postgres -d thedatam_dbb -f thedatam_db_140824.sql

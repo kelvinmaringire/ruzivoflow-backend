@@ -45,3 +45,11 @@ country_leagues = {
 
     }
 }
+
+"""
+country_leagues_with_ids = {
+    'England': {
+        'Premier League': {'betway_id': '5546c4d7-d816-e811-80cd-00155d4cf19b', 'forbet_id': 1},
+    }
+}
+"""

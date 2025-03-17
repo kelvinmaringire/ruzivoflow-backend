@@ -67,6 +67,8 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     "https://thedatamine.io",
     "http://thedatamine.io",
+    "https://thedatamine.site",
+    "http://thedatamine.site",
     "http://localhost:9000",
     "http://127.0.0.1:9000",
 ]
@@ -87,7 +89,6 @@ ALLOW_PARALLEL_RUNS = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRONJOBS = [
-    ('0 8 * * *', 'thedatabet.cron.stats_data'),
     ('0 12 * * *', 'thedatabet.cron.forebet_data'),
     ('30 2 * * *', 'thedatabet.cron.betway_data')
 ]
@@ -184,20 +185,8 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
-]
-
-#STATICFILES_DIRS = [
-#    "/var/www/api.thedatamine.io/thedatamine/static/",
-#]
-
-#STATIC_ROOT = "/var/www/api.thedatamine.io/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
-#MEDIA_ROOT = "/var/www/api.thedatamine.io/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 # Default storage settings, with the staticfiles storage updated.
