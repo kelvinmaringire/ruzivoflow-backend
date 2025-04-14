@@ -12,7 +12,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from accounts.views import ContactFormListCreate
-from thedatabet.views import BettingTipsList, BettingStatsList, BetwayOddsList
+from thedatabet.views import BettingTipsList
 
 from .api import api_router
 
@@ -28,8 +28,6 @@ urlpatterns = [
     path('contact_form/', ContactFormListCreate.as_view()),
 
     path('betting_tips/', BettingTipsList.as_view()),
-    path('betting_stats/', BettingStatsList.as_view()),
-    path('betway_odds/', BetwayOddsList.as_view()),
 
     path('thedataeditor/', include('thedataeditor.urls')),
     path('accounts/', include('accounts.urls')),

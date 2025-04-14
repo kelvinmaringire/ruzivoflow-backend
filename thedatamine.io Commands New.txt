@@ -1,12 +1,12 @@
 pip freeze > requirements.txt
 
-su - root
-
-sudo timedatectl set-timezone Africa/Johannesburg
+sudo passwd root
 
 sudo apt update
 
 sudo apt upgrade -y
+
+sudo timedatectl set-timezone Africa/Johannesburg
 
 sudo ufw enable
 
@@ -22,17 +22,12 @@ sudo ufw status
 
 sudo apt install nginx -y
 
-sudo nginx -t   #test conf
-
-sudo service nginx start
-
-sudo systemctl restart nginx
-
 sudo apt install build-essential libpq-dev python3-dev python3-venv cron -y
 
 sudo apt install postgresql postgresql-contrib -y
 
 sudo apt install -y postgresql-common
+
 sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 
 sudo -i -u postgres psql
@@ -61,20 +56,15 @@ sudo -u postgres psql thedatam_db < thedatam_db.sql
 
 pip install -r requirements.txt
 
-sudo myenv/bin/pip install -r requirements.txt -> incase
-
-
 playwright install
 
 playwright install-deps
 
 pip install gunicorn
 
-sudo myenv/bin/pip install gunicorn
-
 sudo nano /etc/systemd/system/gunicorn.service
 
-#########################
+####################################
 
 [Unit]
 Description=Gunicorn instance to serve your Django app
@@ -94,7 +84,7 @@ TimeoutStopSec=5
 [Install]
 WantedBy=multi-user.target
 
-###########################
+####################################
 
 sudo systemctl start gunicorn
 
@@ -104,45 +94,43 @@ sudo systemctl restart gunicorn
 
 sudo systemctl status gunicorn
 
-sudo systemctl daemon-reload -> If you make changes to the service file, you need to reload the systemd daemon:
+sudo systemctl daemon-reload
 
 sudo mkdir static
 
+sudo mkdir thedatamine/static
+
 sudo mkdir conf
-
-
-
-sudo systemctl restart nginx
 
 sudo nano thedatamine/wsgi.py
 
-change 
+Change:
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thedatamine.settings.dev")
-to 
+To:
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thedatamine.settings.production")
 
 python manage.py collectstatic
 
 sudo nano conf/gunicorn_config.py
 
-####################################
+##################################
 
 command = '/var/www/api.thedatamine.io/myenv/bin/gunicorn'
 pythonpath = '/var/www/api.thedatamine.io'
 bind = '178.128.39.77:8000'
 workers = 3
 
-####################################
+##################################
 
 gunicorn -c conf/gunicorn_config.py thedatamine.wsgi
 
-Ctrl Z && bg for playing in the background
+Ctrl Z && bg -> for playing in the background
 
 deactivate
 
 sudo nano /etc/nginx/sites-available/thedatamine
 
-###################################
+##################################
 
 server {
     listen 80;
@@ -161,7 +149,7 @@ server {
     }
 }
 
-##################################
+###################################
 
 cd /etc/nginx/sites-enabled/
 
@@ -173,10 +161,14 @@ sudo apt install certbot python3-certbot-nginx -y
 
 sudo certbot --nginx -d thedatamine.online
 
+sudo nginx -t
+
 sudo systemctl restart nginx
 
 pscp -P 22 forebet_data.json root@178.128.39.77:/var/www/api.thedatamine.io/media/documents/
+
 pscp.exe -P 22 root@156.155.253.131:/var/www/api.thedatamine.io/media/documents/forebet_data.json C:\Users\Ring'az\Desktop
+
 mv /root/forebet_data.json /var/www/api.thedatamine.io/media/documents/
 
 sudo apt install cron
@@ -190,5 +182,19 @@ python manage.py crontab remove
 sudo crontab -e
 
 sudo service cron restart
+
+sudo systemctl restart nginx
+
+sudo systemctl restart gunicorn
+
+sudo systemctl daemon-reload
+
+
+
+
+
+
+
+
 
 
