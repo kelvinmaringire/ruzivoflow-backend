@@ -72,7 +72,10 @@ After=network.target
 User=root
 Group=www-data
 WorkingDirectory=/var/www/api.thedatamine.io
-ExecStart=/var/www/api.thedatamine.io/myenv/bin/gunicorn --workers 3 --bind unix:/run/gunicorn.sock thedatamine.wsgi:application
+ExecStart=/var/www/api.thedatamine.io/myenv/bin/gunicorn \
+          --workers 3 \
+          --bind 138.68.151.51:8000 \
+          thedatamine.wsgi:application
 
 Restart=always
 RestartSec=5
@@ -82,17 +85,17 @@ TimeoutStopSec=5
 [Install]
 WantedBy=multi-user.target
 
+
 ####################################
 
-sudo systemctl start gunicorn
-
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
 sudo systemctl enable gunicorn
+sudo systemctl start gunicorn
 
 sudo systemctl restart gunicorn
 
 sudo systemctl status gunicorn
-
-sudo systemctl daemon-reload
 
 sudo mkdir static
 
@@ -120,9 +123,9 @@ workers = 3
 
 ##################################
 
-gunicorn -c conf/gunicorn_config.py thedatamine.wsgi
+gunicorn -c conf/gunicorn_config.py thedatamine.wsgi &
 
-Ctrl Z && bg -> for playing in the background
+Ctrl Z && bg -> for playing in the background  # no need
 
 deactivate
 
