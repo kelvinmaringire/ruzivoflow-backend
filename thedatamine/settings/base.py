@@ -63,7 +63,7 @@ INSTALLED_APPS = [
 ############### New Settings ################
 
 #AUTH_USER_MODEL = "accounts.User"
-
+"""
 CORS_ALLOWED_ORIGINS = [
     "https://thedatamine.io",
     "http://thedatamine.io",
@@ -72,6 +72,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",
     "http://127.0.0.1:9000",
 ]
+"""
+CORS_ALLOW_ALL_ORIGINS = True
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
