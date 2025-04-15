@@ -1,5 +1,7 @@
 pip freeze > requirements.txt
 
+oqPZh9kaH6nt
+
 su - root
 
 sudo timedatectl set-timezone Africa/Johannesburg
@@ -56,6 +58,9 @@ cd api.thedatamine.io
 sudo python3 -m venv myenv
 
 source myenv/bin/activate
+
+default_table_access_method = heap;  #remove
+
 
 sudo -u postgres psql thedatam_db < thedatam_db.sql
 

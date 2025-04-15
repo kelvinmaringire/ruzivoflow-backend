@@ -16,6 +16,8 @@ sudo ufw allow 8000/tcp
 
 sudo ufw allow 443/tcp
 
+sudo ufw allow 22/tcp
+
 sudo ufw reload
 
 sudo ufw status
@@ -55,10 +57,6 @@ source myenv/bin/activate
 sudo -u postgres psql thedatam_db < thedatam_db.sql
 
 pip install -r requirements.txt
-
-playwright install
-
-playwright install-deps
 
 pip install gunicorn
 
@@ -117,7 +115,7 @@ sudo nano conf/gunicorn_config.py
 
 command = '/var/www/api.thedatamine.io/myenv/bin/gunicorn'
 pythonpath = '/var/www/api.thedatamine.io'
-bind = '178.128.39.77:8000'
+bind = '138.68.151.51:8000'
 workers = 3
 
 ##################################
@@ -134,14 +132,14 @@ sudo nano /etc/nginx/sites-available/thedatamine
 
 server {
     listen 80;
-    server_name thedatamine.online;
+    server_name databet.co.za;
 
     location /static/ {
         alias /var/www/api.thedatamine.io/static/;
     }
 
     location / {
-        proxy_pass http://178.128.39.77:8000;
+        proxy_pass http://138.68.151.51:8000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -159,7 +157,7 @@ sudo rm default
 
 sudo apt install certbot python3-certbot-nginx -y
 
-sudo certbot --nginx -d thedatamine.online
+sudo certbot --nginx -d databet.co.za
 
 sudo nginx -t
 

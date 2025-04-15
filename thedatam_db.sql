@@ -20,8 +20,6 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
-
 --
 -- TOC entry 214 (class 1259 OID 114487)
 -- Name: accounts_contactform; Type: TABLE; Schema: public; Owner: -
