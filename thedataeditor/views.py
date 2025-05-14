@@ -2,8 +2,6 @@ import os
 from pathlib import Path
 from urllib import request as urllib_request
 
-from django.http import HttpResponse, Http404
-
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -16,6 +14,9 @@ from .serializers import (
     NodeItemSerializer,
     ConnectionSerializer
 )
+
+from .utils.read_csv import read_csv
+from .utils.read_json import read_json
 
 #from .mixins import *
 
@@ -70,27 +71,40 @@ class NodeItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = NodeItem.objects.all()
     serializer_class = NodeItemSerializer
 
-"""
+
+class NodeItemUpdateFormData(generics.RetrieveUpdateAPIView):
+    queryset = NodeItem.objects.all()
+    serializer_class = NodeItemSerializer
+
     def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
+        partial = kwargs.pop("partial", False)
         instance = self.get_object()
-        request_data_eval = eval(request.data['out_data']['original_id'])
-        request_data = request_data_eval(request.data)
+        request_data = request.data.copy()
+
+        # Safely access the file_id from nested dictionaries
+        form_data = request_data.get('formData', {})
+        file_id = form_data.get('file_id')
+        node_item_id = form_data.get('node_item_id')
+
+        original_id = instance.original_id
+
+        if original_id == "read_json":
+            response_data = read_json(file_id, node_item_id)
+        elif original_id == "read_csv":
+            response_data = read_csv(file_id, node_item_id)
+        else:
+            response_data = {}
+
+        request_data["response_data"] = response_data
+
+        instance.response_data = response_data
+        instance.save()
+
         serializer = self.get_serializer(instance, data=request_data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
-        if getattr(instance, '_prefetched_objects_cache', None):
-            # If 'prefetch_related' has been applied to a queryset, we need to
-            # forcibly invalidate the prefetch cache on the instance.
-            instance._prefetched_objects_cache = {}
-
         return Response(serializer.data)
-"""
-
-class NodeItemUpdate(generics.UpdateAPIView):
-    queryset = NodeItem.objects.all()
-    serializer_class = NodeItemSerializer
 
 
 class ConnectionListCreate(generics.ListCreateAPIView):
@@ -109,7 +123,7 @@ class DownloadFile(APIView):
         base_dir = Path(__file__).resolve().parent
         node_item = request.data
         filename = node_item['filename']
-        filepath = os.path.join(base_dir, "mixins", "files", filename)
+        filepath = os.path.join(base_dir, "utils", "files", filename)
         p = Path(filepath)
         urllib_request.urlretrieve(p.as_uri(), filename)
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -1,12 +1,10 @@
-import os
-
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
 
 from wagtail.images.models import Image
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.documents.models import Document
 
 
 @register_snippet
@@ -123,10 +121,18 @@ class NodeItem(models.Model):
         return descendants
 
     def delete(self, *args, **kwargs):
-        if self.filename:
-            file_path = os.path.join(settings.BASE_DIR, "mixins", "files", self.filename)
-            if os.path.exists(file_path):
-                os.remove(file_path)
+        # Delete associated connections where this node is the source or target
+        Connection.objects.filter(
+            workflow=self.workflow,
+            sourceId=self.html_id
+        ).delete()
+        Connection.objects.filter(
+            workflow=self.workflow,
+            targetId=self.html_id
+        ).delete()
+
+        Document.objects.filter(title=self.html_id).delete()
+
         super(NodeItem, self).delete(*args, **kwargs)
 
 
