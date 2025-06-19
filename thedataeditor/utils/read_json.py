@@ -7,9 +7,10 @@ from wagtail.models import Collection
 from thedataeditor.models import NodeItem
 
 
-def read_json(document_id, node_item_id):
+def read_json(form_data):
     try:
         # 1. Get the original Wagtail document
+        document_id = form_data.get("file_id")
         original_doc = Document.objects.get(id=document_id)
 
         # 2. Load JSON content
@@ -28,6 +29,7 @@ def read_json(document_id, node_item_id):
         collection, _ = Collection.objects.get_or_create(name="Parquet")
 
         # 6. Get NodeItem
+        node_item_id = form_data.get("node_item_id")
         node_item = NodeItem.objects.get(id=node_item_id)
         parquet_filename = f"{node_item.html_id}.parquet"
 

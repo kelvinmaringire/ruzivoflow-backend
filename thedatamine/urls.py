@@ -12,7 +12,6 @@ from rest_framework_simplejwt.views import (
 )
 
 from accounts.views import ContactFormListCreate
-from thedatabet.views import BettingTipsList
 
 from .api import api_router
 
@@ -26,8 +25,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('contact_form/', ContactFormListCreate.as_view()),
-
-    path('betting_tips/', BettingTipsList.as_view()),
 
     path('thedataeditor/', include('thedataeditor.urls')),
     path('accounts/', include('accounts.urls')),

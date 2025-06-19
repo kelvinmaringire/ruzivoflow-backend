@@ -1,9 +1,7 @@
 from django.contrib.auth.models import User, Group, Permission
+from django.core.mail import send_mail
 
 from rest_framework import generics
-
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework_simplejwt.backends import TokenBackend
 
 from .models import ExtendedUser, ContactForm
 from .serializers import UserSerializer, GroupSerializer, PermissionSerializer, ExtendedUserSerializer, ContactFormSerializer
@@ -42,6 +40,28 @@ class ExtendedUserUpdate(generics.RetrieveUpdateAPIView):
 class ContactFormListCreate(generics.ListCreateAPIView):
     queryset = ContactForm.objects.all()
     serializer_class = ContactFormSerializer
+
+    def perform_create(self, serializer):
+        contact = serializer.save()  # Save the form data to the database
+
+        # Prepare and send email
+        subject = f"New Contact Message from {contact.fullname}"
+        message = f"""
+    You have received a new contact message:
+
+    From: {contact.fullname}
+    Email: {contact.email}
+
+    Message:
+    {contact.message}
+    """
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=contact.email,
+            recipient_list=['kelvinmaringire@gmail.com'],
+            fail_silently=False,
+        )
 
 
 

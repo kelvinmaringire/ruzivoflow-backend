@@ -55,7 +55,6 @@ INSTALLED_APPS = [
 
     "home",
     "accounts",
-    "thedatabet",
     "thedataeditor"
 
 ]
@@ -96,6 +95,14 @@ CRONJOBS = [
     ('0 12 * * *', 'thedatabet.cron.forebet_data'),
     ('30 2 * * *', 'thedatabet.cron.betway_data')
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kelvinmaringire@gmail.com'  # Replace with your Gmail
+EMAIL_HOST_PASSWORD = 'Raquel700.'  # Use App Password, not Gmail login
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 ############### End New Settings ################

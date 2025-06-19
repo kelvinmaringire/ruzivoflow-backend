@@ -6,9 +6,10 @@ from wagtail.models import Collection
 from thedataeditor.models import NodeItem
 
 
-def read_csv(document_id, node_item_id):
+def read_csv(form_data):
     try:
         # 1. Get the original Wagtail document
+        document_id = form_data.get("file_id")
         original_doc = Document.objects.get(id=document_id)
 
         # 2. Load CSV content into DataFrame
@@ -24,6 +25,7 @@ def read_csv(document_id, node_item_id):
         collection, _ = Collection.objects.get_or_create(name="Parquet")
 
         # 5. Get NodeItem
+        node_item_id = form_data.get("node_item_id")
         node_item = NodeItem.objects.get(id=node_item_id)
         parquet_filename = f"{node_item.html_id}.parquet"
 

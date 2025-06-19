@@ -36,6 +36,8 @@ class Node(models.Model):
     type = models.CharField(max_length=20)
     icon = models.ForeignKey(Image, on_delete=models.SET_NULL, null=True)
     order = models.IntegerField()
+    show = models.BooleanField(default=True)
+    disabled = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -46,11 +48,15 @@ class Node(models.Model):
         FieldPanel("html_id"),
         FieldPanel("type"),
         FieldPanel("icon"),
-        FieldPanel("order")
+        FieldPanel("order"),
+        FieldPanel("show"),
+        FieldPanel("disabled")
     ]
 
     class Meta:
-        ordering = ['order', 'name']
+        verbose_name = "Node"
+        verbose_name_plural = "Nodes"
+        ordering = ["order", "name"]
 
 
 @register_snippet

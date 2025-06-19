@@ -1,50 +1,779 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>thedatamine API</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../static/css/cover.css">
-  <!-- Any additional CSS files can be included here -->
-  <style>
-    /* Inline styles for demonstration purposes */
-    html {
-      height: 100%;
-    }
-    .text-bg-dark {
-      color: #333; /* Example dark text color */
-    }
-  </style>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Databet - Odds trading is just mathematics</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="../../static/assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../../static/assets/css/minified.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: SoftLand
+  * Template URL: https://bootstrapmade.com/softland-bootstrap-app-landing-page-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-<body class="d-flex h-100 text-center text-bg-dark">
-  {% load static %}
-  {% load wagtailcore_tags %}
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-      <div>
-        <h3 class="float-md-start mb-0 text-warning">thedatamine.io API</h3>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link fw-bold py-1 px-0" href="{% url 'wagtailadmin_home' %}">Wagtail Admin</a>
-          <a class="nav-link fw-bold py-1 px-0" href="{% url 'admin:index' %}">Django Admin</a>
-        </nav>
+<body class="index-page">
+
+{% load wagtailcore_tags %}
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="#hero" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="../../static/assets/img/logo.png" alt="databet" loading="lazy">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out">
+            <img src="../../static/assets/img/phone_1.png" alt="Phone 1" class="phone-1" loading="lazy">
+            <img src="../../static/assets/img/phone_2.png" alt="Phone 2" class="phone-2" loading="lazy">
+          </div>
+          <div class="col-lg-8 d-flex flex-column justify-content-center align-items text-center text-md-start" data-aos="fade-up">
+            <h2>Bet Smarter, Not Harder: Master Odds Trading with Databet.</h2>
+            <p>Databet transforms football betting into scientific odds trading.
+              Leverage data analytics, value betting strategies, and daily Betway-optimized tickets to grow your bankroll steadily.
+              Profit isn't luck – it's mathematical precision.</p>
+            <div class="d-flex mt-4 justify-content-center justify-content-md-start">
+              <a href="../../static/assets/Databet.apk" download="Databet.apk" class="download-btn"><i class="bi bi-google-play"></i> <span>Download App</span></a>
+              <!--a href="#" class="download-btn"><i class="bi bi-apple"></i> <span>App Store</span></a-->
+            </div>
+          </div>
+        </div>
       </div>
-    </header>
 
-    <main class="px-3">
-      <h1 class="text-warning">Backend Management.</h1>
-      <p class="lead">This web application serves as the backend for thedatamine.io. It provides APIs, backend management, and configurations, and is intended exclusively for staff use. Access is restricted to authorized staff members only.</p>
-      <p class="lead">
-        <a target="_blank" href="https://thedatamine.io/" class="btn btn-lg btn-light fw-bold border-white bg-warning">View Site</a>
-      </p>
-    </main>
+    </section><!-- /Hero Section -->
 
-    <footer class="mt-auto text-white-50">
-      <p>Backend for <a href="https://thedatamine.io/" class="text-warning">thedatamine.io</a>, by <a href="https://www.facebook.com/maringire/" class="text-white">Kelvin Maringire</a>.</p>
-    </footer>
-  </div>
+    <!-- About Section -->
+    <section id="about" class="about section">
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row align-items-xl-center gy-5">
+
+          <div class="col-xl-5 content">
+            <h3>About Us</h3>
+            <h2>About Databet: Where Mathematics Meets Football.</h2>
+            <p>Founded by a team of data analysts, software developers, and lifelong football fans,
+              Databet (databet.co.za) was born from one simple idea: odds trading is just mathematics.
+              We’re not here for crazy multi‑bets or haphazard tips—we teach you to bet 1–5 % of your bankroll on high‑value opportunities.
+              Our daily match previews give you deep insights before you trade, and our straightforward Betway tickets let you copy our picks in a click.
+              By combining love for the game with advanced analytics, we empower punters to beat the bookies—slowly, safely, consistently.</p>
+            <a href="../../static/assets/Databet.apk" download="Databet.apk" class="read-more"><span>Download App</span><i class="bi bi-google-play"></i></a>
+          </div>
+
+          <div class="col-xl-7">
+            <div class="row gy-4 icon-boxes">
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">
+                  <i class="bi bi-bar-chart"></i>
+                  <h3>Data‑Driven Insights</h3>
+                  <p>Every tip is backed by historical odds analysis and statistical models. Our platform processes yesterday’s numbers to uncover tomorrow’s value bets.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                  <i class="bi bi-piggy-bank"></i>
+                  <h3>Smart Bankroll Management</h3>
+                  <p>We advocate staking just 1–5 % of your total funds per trade. This disciplined approach preserves your bankroll and smooths out variance.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box">
+                  <i class="bi bi-journal-richtext"></i>
+                  <h3>Expert Match Previews</h3>
+                  <p>Get concise, actionable write‑ups on form, tactics, and key player metrics—so you understand why we back each tip.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box">
+                  <i class="bi bi-ticket"></i>
+                  <h3>One‑Click Betting Tickets</h3>
+                  <p>Copy our Betway slips in a single tap. No manual input, no mistakes—just seamless execution of our proven strategies.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Featured Section -->
+    <section id="featured" class="featured section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Why Choose Databet?</h2>
+        <p>Your Winning Formula Starts Here.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+              <div class="img">
+                <img src="../../static/assets/img/cards-2.png" alt="" class="img-fluid" loading="lazy">
+                <div class="icon"><i class="bi bi-check-circle"></i></div>
+              </div>
+              <h2 class="title">Proven Value Betting</h2>
+              <p>
+                We focus on value betting—finding small odds with big potential over time. Our strategies avoid reckless multibets, ensuring steady profits through discipline. It’s a method tested to outsmart the bookies.
+              </p>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-md-4">
+            <div class="card">
+              <div class="img">
+                <img src="../../static/assets/img/cards-4.png" alt="" class="img-fluid" loading="lazy">
+                <div class="icon"><i class="bi bi-calculator"></i></div>
+              </div>
+              <h2 class="title">Expert Precision</h2>
+              <p>
+               Our team combines football knowledge with mathematical expertise to deliver precise odds trading tips. Every recommendation is backed by data analytics, giving you confidence in each bet. With Databet, you’re trading with the pros.
+              </p>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card">
+              <div class="img">
+                <img src="../../static/assets/img/cards-6.png" alt="" class="img-fluid" loading="lazy">
+                <div class="icon"><i class="bi bi-people"></i></div>
+              </div>
+              <h2 class="title">Supportive Community</h2>
+              <p>
+                Joining Databet means joining a community of smart traders. We’re here to answer questions, share insights, and help you succeed. Contact us anytime—your success is our goal.
+              </p>
+            </div>
+          </div><!-- End Card Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Featured Section -->
+
+    <!-- Cards Section -->
+    <section id="cards" class="cards section">
+
+      <div class="container">
+
+        <div class="text-center mb-4 steps-img" data-aos="zoom-out">
+          <img src="../../static/assets/img/steps.svg" alt="" loading="lazy">
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-item">
+              <span>01</span>
+              <h4>Our Mission</h4>
+              <p>Databet was created to empower punters with smart, data-driven odds trading. We’re here to help you take control and profit responsibly.</p>
+            </div>
+          </div><!-- Card Item -->
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-item">
+              <span>02</span>
+              <h4><a href="" class="stretched-link">The Databet Team</a></h4>
+              <p>Our crew of football lovers, data nerds, and developers works together to perfect your trading experience. Passion drives us to deliver the best.</p>
+            </div>
+          </div><!-- Card Item -->
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-item">
+              <span>03</span>
+              <h4><a href="" class="stretched-link">Grow With Us</a></h4>
+              <p>oin a community of traders learning to master odds with small, calculated bets. Share tips and grow your skills alongside others.</p>
+            </div>
+          </div><!-- Card Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Cards Section -->
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Features</h2>
+        <p>Engineered for consistent profit – not hype or hope</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4 align-items-center features-item">
+          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+            <img src="../../static/assets/img/features-1.svg" class="img-fluid" alt="" loading="lazy">
+          </div>
+          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+            <h3>Daily Betting Tickets</h3>
+            <p class="fst-italic">
+              Our app provides daily betting slips for Betway games, ready to copy and trade. Each ticket is built on expert analysis and value betting principles.
+            </p>
+            <ul>
+              <li><i class="bi bi-check"></i><span> Quick and easy to use.</span></li>
+              <li><i class="bi bi-check"></i> <span>Fresh trades every day</span></li>
+              <li><i class="bi bi-check"></i> <span>Optimized for small odds</span></li>
+            </ul>
+          </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+          <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+            <img src="../../static/assets/img/features-2.svg" class="img-fluid" alt="" loading="lazy">
+          </div>
+          <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
+            <h3>Performance Statistics</h3>
+            <p>
+              Track your trading success with our statistics feature, showing wins, losses, and trends. Review previous days’ numbers to refine your approach.
+              We provide clear data to help you improve over time. It’s all about learning and growing as a trader.
+            </p>
+          </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+          <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
+            <img src="../../static/assets/img/features-3.svg" class="img-fluid" alt="" loading="lazy">
+          </div>
+          <div class="col-md-7" data-aos="fade-up">
+            <h3>Match Previews</h3>
+            <p>Get detailed previews for nearly all Betway games to inform your trades. We break down stats and trends so you can trade with insight.</p>
+            <ul>
+              <li><i class="bi bi-check"></i> <span>In-depth game analysis.</span></li>
+              <li><i class="bi bi-check"></i><span>Covers key match factors.</span></li>
+              <li><i class="bi bi-check"></i> <span>Perfect for strategic punters.</span>.</li>
+            </ul>
+          </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+          <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
+            <img src="../../static/assets/img/features-4.svg" class="img-fluid" alt="" loading="lazy">
+          </div>
+          <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
+            <h3>Bankroll Tools</h3>
+            <p>
+              Stay disciplined with our bankroll management tools, designed to keep your funds safe. Set your budget, stick to 1% to 5% trades, and watch your progress.
+              The app prevents impulsive bets, focusing on slow, steady gains. Trade responsibly with Databet.
+            </p>
+          </div>
+        </div><!-- Features Item -->
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>App Gallery</h2>
+        <p>Inside the Trader’s Playbook: App Experience Gallery.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "centeredSlides": true,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 0
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                },
+                "992": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 7,
+                  "spaceBetween": 30
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-1.png"><img src="../../static/assets/img/app-gallery/app-gallery-1.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-2.png"><img src="../../static/assets/img/app-gallery/app-gallery-2.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-3.png"><img src="../../static/assets/img/app-gallery/app-gallery-3.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-4.png"><img src="../../static/assets/img/app-gallery/app-gallery-4.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-5.png"><img src="../../static/assets/img/app-gallery/app-gallery-5.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-6.png"><img src="../../static/assets/img/app-gallery/app-gallery-6.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-7.png"><img src="../../static/assets/img/app-gallery/app-gallery-7.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-8.png"><img src="../../static/assets/img/app-gallery/app-gallery-8.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-9.png"><img src="../../static/assets/img/app-gallery/app-gallery-9.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-10.png"><img src="../../static/assets/img/app-gallery/app-gallery-10.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-11.png"><img src="../../static/assets/img/app-gallery/app-gallery-11.png" class="img-fluid" alt="" loading="lazy"></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery-full" href="../../static/assets/img/app-gallery/app-gallery-12.png"><img src="../../static/assets/img/app-gallery/app-gallery-12.png" class="img-fluid" alt="" loading="lazy"></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Gallery Section -->
+
+    <!-- Testimonials Section -->
+    <!-- section id="testimonials" class="testimonials section light-background">
+
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p>Hear From Punters Who Trade Like Hedge Funds.</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="../../static/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="" loading="lazy">
+                <h3>Thabo Kgosi</h3>
+                <h4>Data Analyst</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Databet’s mathematical approach has made odds trading simple and profitable for me. The daily tickets are a time-saver, and my bankroll’s growing steadily.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="../../static/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="" loading="lazy">
+                <h3>Naledi Molefe</h3>
+                <h4>Accountant</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>I love how Databet focuses on small, smart bets instead of risky multibets. The match previews give me confidence, and the app is so easy to use.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="../../static/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="" loading="lazy">
+                <h3>Sibusiso Ngwenya</h3>
+                <h4>Engineer</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>The statistics feature helps me track my progress and improve. Databet’s data-driven tips have turned my love for football into consistent wins.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="../../static/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="" loading="lazy">
+                <h3>Zanele Mbatha</h3>
+                <h4>Freelancer</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>As a beginner, I found Databet’s tools and community support amazing. It’s taught me to trade odds responsibly and profit over time.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="../../static/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="" loading="lazy">
+                <h3>Sipho N</h3>
+                <h4>Waiter</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>I love the one‑click tickets—no more typos or missed bets. It’s seamless.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section --><!-- /Testimonials Section -->
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Pricing</h2>
+        <p>Invest in Analytics, Not Gambling.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="zoom-in" data-aos-delay="100">
+
+        <div class="row g-4">
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Starter</h3>
+              <div class="icon">
+                <i class="bi bi-box"></i>
+              </div>
+              <h4><sup>R</sup>0<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Daily Value Bets</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Match previews</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>One‑Click Bet Slips</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Performance statistics</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Priority support</span></li>
+              </ul>
+              <div class="text-center"><a href="../../static/assets/Databet.apk" download="Databet.apk" class="buy-btn"><i class="bi bi-google-play"></i> Download App</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item featured">
+              <h3>Pro Trader</h3>
+              <div class="icon">
+                <i class="bi bi-rocket"></i>
+              </div>
+
+              <h4><sup>R</sup>299<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Daily Value Bets</span></li>
+                <li><i class="bi bi-check"></i> <span>Match previews</span></li>
+                <li><i class="bi bi-check"></i> <span>One‑Click Bet Slips</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Performance statistics</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Priority support</span></li>
+              </ul>
+              <div class="text-center"><a href="../../static/assets/Databet.apk" download="Databet.apk" class="buy-btn"><i class="bi bi-google-play"></i> Download App</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Elite Trader</h3>
+              <div class="icon">
+                <i class="bi bi-send"></i>
+              </div>
+              <h4><sup>R</sup>499<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> <span>Daily Value Bets</span></li>
+                <li><i class="bi bi-check"></i> <span>Match previews</span></li>
+                <li><i class="bi bi-check"></i> <span>One‑Click Bet Slips</span></li>
+                <li><i class="bi bi-check"></i> <span>Performance statistics</span></li>
+                <li><i class="bi bi-check"></i> <span>Priority support</span></li>
+              </ul>
+              <div class="text-center"><a href="../../static/assets/Databet.apk" download="Databet.apk" class="buy-btn"><i class="bi bi-google-play"></i> Download App</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Pricing Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Frequently Asked Questions</h2>
+        <p>Because ‘Trust Us’ Isn’t a Strategy.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="faq-container">
+
+              <div class="faq-item faq-active">
+                <h3>What is odds trading?</h3>
+                <div class="faq-content">
+                  <p>Odds trading is a mathematical way to bet, focusing on value bets with small odds for consistent gains. It’s about strategy, not luck.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>How do I start with Databet?</h3>
+                <div class="faq-content">
+                  <p>Download the app, fund your Betway account, then follow our daily ticket or manual tips—staking just 1–5 % of your bankroll each time.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Which sports do you cover?</h3>
+                <div class="faq-content">
+                  <p>We focus on major football (soccer) leagues worldwide, including the Premier League, La Liga, Serie A, and more.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>How do you calculate your tips?</h3>
+                <div class="faq-content">
+                  <p>Through proprietary algorithms that analyze historical odds movements, team form, and statistical indicators. Each tip is scored for value.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Do I need football expertise to use Databet?</h3>
+                <div class="faq-content">
+                  <p>No, our app is for everyone—daily tickets let you copy and trade, while previews offer insights for those who want to learn.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3>Can I contact you with suggestions?</h3>
+                <div class="faq-content">
+                  <p>Absolutely—reach out via our contact form, call or social channels. We thrive on feedback and community input!</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div><!-- End Faq Column-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Questions or ideas? We’re here to assist you anytime.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>065 826 1000</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>info@databet.co.za</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container">
+      <h3 class="sitename">Databet</h3>
+      <p>Odds Trading Is Just Mathematics.</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-youtube"></i></a>
+        <a href=""><i class="bi bi-telegram"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">Databet</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you've purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+          Designed & Developed by <a href="https://ruzivoflow.com/" target="_blank">Ruzivoflow</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+>
+
+  <!-- Main JS File -->
+  <script src="../../static/assets/js/minified.js"></script>
+
 </body>
+
 </html>

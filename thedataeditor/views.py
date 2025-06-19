@@ -15,10 +15,7 @@ from .serializers import (
     ConnectionSerializer
 )
 
-from .utils.read_csv import read_csv
-from .utils.read_json import read_json
-
-#from .mixins import *
+from .dispatcher import get_reader_function
 
 
 class NodeCategoryListCreate(generics.ListCreateAPIView):
@@ -72,6 +69,9 @@ class NodeItemDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NodeItemSerializer
 
 
+from .dispatcher import get_reader_function
+
+
 class NodeItemUpdateFormData(generics.RetrieveUpdateAPIView):
     queryset = NodeItem.objects.all()
     serializer_class = NodeItemSerializer
@@ -81,25 +81,22 @@ class NodeItemUpdateFormData(generics.RetrieveUpdateAPIView):
         instance = self.get_object()
         request_data = request.data.copy()
 
-        # Safely access the file_id from nested dictionaries
+        # Safely access the formData from request
         form_data = request_data.get('formData', {})
-        file_id = form_data.get('file_id')
-        node_item_id = form_data.get('node_item_id')
-
         original_id = instance.original_id
 
-        if original_id == "read_json":
-            response_data = read_json(file_id, node_item_id)
-        elif original_id == "read_csv":
-            response_data = read_csv(file_id, node_item_id)
-        else:
-            response_data = {}
+        # Get the appropriate reader function using the dispatcher
+        reader_function = get_reader_function(original_id)
 
+        # Execute the function if found, otherwise return empty dict
+        response_data = reader_function(form_data) if reader_function else {}
+
+        # Update the instance and save
         request_data["response_data"] = response_data
-
         instance.response_data = response_data
         instance.save()
 
+        # Proceed with the normal update flow
         serializer = self.get_serializer(instance, data=request_data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
